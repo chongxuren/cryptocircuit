@@ -1,0 +1,154 @@
+{
+  "schema": "quantum-nct-source-ir/v1",
+  "id": "ascon_sbox_huang_zhang_lin_toffoli_depth1_nct",
+  "target": "ascon_sbox_forward_toffoli_depth1_nct",
+  "provenance": {
+    "evidence_status": "source-disclosed-verified",
+    "evidence_locator": "EUROCRYPT 2025 paper conclusion on PDF p.28 identifies the official Ascon applications; artifact README lines 10-50, NCT cost record, raw QASM, and layer QASM",
+    "files": [
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_raw.qasm",
+        "sha256": "df9508f4ac2e3103029b56e0278312390cf4e15a9a0baa0a8826d8c526a38fe6"
+      },
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_layers.qasm",
+        "sha256": "83e7b7ce2acceb4510c8c04403211106a7104478484e2d61d4391a44c19cbeef"
+      }
+    ]
+  },
+  "boundary": {
+    "operation": "isometry",
+    "basis_semantics": "forward Ascon S-box on computational-basis states",
+    "input_coordinate_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "input_coordinate_order": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "input_bit_order": "msb0",
+    "output_coordinate_wires": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "output_coordinate_order": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ],
+    "output_bit_order": "msb0",
+    "preserved_input_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "clean_workspace_wires": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "clean_workspace_initial_state": "zero",
+    "clean_workspace_final_state": "zero",
+    "zero_initialized_output_wires": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "terminal_permutation": "explicit_nonidentity",
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "model": {
+    "logical_qubits": 15,
+    "physical_qubits": null,
+    "input_qubits": 5,
+    "output_qubits": 5,
+    "zero_initialized_output_qubits": 5,
+    "clean_ancillas": 5,
+    "dirty_ancillas": 0,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "connectivity": "all_to_all",
+    "measurements": 0,
+    "classical_feed_forward": false,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "noise_model": null,
+    "fault_tolerance_model": null
+  },
+  "source_circuit": {
+    "qasm_path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_raw.qasm",
+    "layer_qasm_path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_layers.qasm",
+    "normalization": {
+      "algorithm": "cancel_identical_self_inverse_gates_adjacent_on_all_incident_wires_to_fixed_point",
+      "removed_identical_gate_pairs": {
+        "x_pairs": 0,
+        "cnot_pairs": 0,
+        "toffoli_pairs": 0
+      }
+    },
+    "raw_gate_counts": {
+      "x_count": 1,
+      "cnot_count": 95,
+      "toffoli_count": 5
+    },
+    "artifact_layer_resources": {
+      "total_logical_depth": 56,
+      "toffoli_depth": 1
+    }
+  },
+  "resources": {
+    "logical_qubits": 15,
+    "physical_qubits": null,
+    "clean_ancillas": 5,
+    "dirty_ancillas": 0,
+    "zero_initialized_output_qubits": 5,
+    "total_gate_count": 101,
+    "x_count": 1,
+    "cnot_count": 95,
+    "toffoli_count": 5,
+    "t_count": null,
+    "total_logical_depth": 56,
+    "cnot_depth": null,
+    "toffoli_depth": 1,
+    "t_depth": null,
+    "measurement_rounds": 0,
+    "classical_control_operations": 0,
+    "topology_overhead": null
+  }
+}

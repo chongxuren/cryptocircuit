@@ -1,0 +1,165 @@
+{
+  "schema": "quantum-nct-repository-ir/v1",
+  "id": "aes_sbox_repository_width9_832toffoli",
+  "target": "aes_sbox_forward_minimal_width_nct",
+  "provenance": {
+    "evidence_status": "repository-derived-verified",
+    "evidence_locator": "Exact controlled-X commutation cancellations and the adjacent two-Toffoli identity recorded in the deterministic derivation receipt; independently replayed against the complete nine-wire source permutation",
+    "files": [
+      {
+        "path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_raw.qasm",
+        "sha256": "f97e315439b10fe8b07cd5a8e75a3f68b1fe2e2da7c44dea229b9151ea46718f"
+      },
+      {
+        "path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
+        "sha256": "8412255209c6d14bceac2ec29ca13ea164758a7ac9d4447b23596d757793ab4b"
+      },
+      {
+        "path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.qasm",
+        "sha256": "9c4185d28c9afeb444da3973014815503c6f3d4d84656bc4d08509cbb89be896"
+      }
+    ]
+  },
+  "boundary": {
+    "operation": "isometry",
+    "basis_semantics": "forward AES S-box on computational-basis states",
+    "input_coordinate_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "input_coordinate_order": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7"
+    ],
+    "input_bit_order": "msb0",
+    "output_coordinate_wires": [
+      4,
+      2,
+      0,
+      1,
+      3,
+      5,
+      6,
+      7
+    ],
+    "output_coordinate_order": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4",
+      "y5",
+      "y6",
+      "y7"
+    ],
+    "output_bit_order": "msb0",
+    "preserved_input_wires": [],
+    "clean_workspace_wires": [
+      8
+    ],
+    "clean_workspace_initial_state": "zero",
+    "clean_workspace_final_state": "zero",
+    "zero_initialized_output_wires": [],
+    "terminal_permutation": "explicit_nonidentity",
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  },
+  "model": {
+    "logical_qubits": 9,
+    "physical_qubits": null,
+    "input_qubits": 8,
+    "output_qubits": 8,
+    "zero_initialized_output_qubits": 0,
+    "clean_ancillas": 1,
+    "dirty_ancillas": 0,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "connectivity": "all_to_all",
+    "measurements": 0,
+    "classical_feed_forward": false,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "noise_model": null,
+    "fault_tolerance_model": null
+  },
+  "source_predecessor": {
+    "record_path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
+    "normalization_algorithm": "cancel_identical_self_inverse_gates_adjacent_on_all_incident_wires_to_fixed_point",
+    "resources": {
+      "logical_qubits": 9,
+      "physical_qubits": null,
+      "clean_ancillas": 1,
+      "dirty_ancillas": 0,
+      "zero_initialized_output_qubits": 0,
+      "total_gate_count": 1951,
+      "x_count": 233,
+      "cnot_count": 885,
+      "toffoli_count": 833,
+      "t_count": null,
+      "total_logical_depth": 1594,
+      "cnot_depth": null,
+      "toffoli_depth": 793,
+      "t_depth": null,
+      "measurement_rounds": 0,
+      "classical_control_operations": 0,
+      "topology_overhead": null
+    }
+  },
+  "candidate_circuit": {
+    "qasm_path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.qasm",
+    "full_source_permutation_equivalence_basis_states": 512
+  },
+  "acceptance_bounds": {
+    "logical_qubits_at_most": 9,
+    "clean_ancillas_at_most": 1,
+    "dirty_ancillas": 0,
+    "x_count_at_most": 233,
+    "cnot_count_at_most": 885,
+    "toffoli_count_at_most": 832,
+    "toffoli_depth_at_most": 793,
+    "total_logical_depth_at_most": 1594,
+    "measurements": 0
+  },
+  "resources": {
+    "logical_qubits": 9,
+    "physical_qubits": null,
+    "clean_ancillas": 1,
+    "dirty_ancillas": 0,
+    "zero_initialized_output_qubits": 0,
+    "total_gate_count": 1948,
+    "x_count": 233,
+    "cnot_count": 883,
+    "toffoli_count": 832,
+    "t_count": null,
+    "total_logical_depth": 1591,
+    "cnot_depth": null,
+    "toffoli_depth": 792,
+    "t_depth": null,
+    "measurement_rounds": 0,
+    "classical_control_operations": 0,
+    "topology_overhead": null
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "circuit-ir/v1",
+  "id": "ascon_sbox_slice_depth4",
+  "source": {
+    "sha256": "2f410410f61609fcdb5a3295c5b030e2a2eac00bc393550a7a81fea604c726db",
+    "pages": [
+      34
+    ],
+    "locator": "Appendix C, Listing 4"
+  },
+  "interface": {
+    "inputs": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "outputs": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ]
+  },
+  "target": {
+    "kind": "ascon_sbox",
+    "input_bit_order": "msb0",
+    "output_bit_order": "msb0"
+  },
+  "claim": {
+    "counts": {
+      "xor": 1,
+      "xnor": 10,
+      "nand": 5,
+      "linear": 11,
+      "nonlinear": 5,
+      "total": 16
+    },
+    "depth": 4,
+    "nonlinear_depth": 1,
+    "not_verified": [
+      "global optimality or state-of-the-art status",
+      "mapped GE, area, delay, power, energy, or ADP"
+    ]
+  },
+  "transcription": "The paper counts XOR/XNOR and nonlinear gates but omits NOT. Its three expressions x XOR 1 are encoded as not_free: they affect Boolean semantics and total depth but not the reported gate count.",
+  "program": [
+    "t0 = xnor x0 x4",
+    "t5 = not_free x1",
+    "t1 = xnor x2 x3",
+    "t6 = not_free x0",
+    "t2 = xnor x1 x2",
+    "g2 = nand t1 t2",
+    "y1 = xnor t0 g2",
+    "t7 = xor x3 t6",
+    "t3 = xnor x3 x4",
+    "g4 = nand t3 t6",
+    "y3 = xnor g4 t2",
+    "g0 = nand x2 t5",
+    "t8 = xnor g0 t3",
+    "t4 = not_free x3",
+    "g3 = nand x4 t4",
+    "y2 = xnor g3 t2",
+    "g1 = nand t0 t5",
+    "y4 = xnor g1 t7",
+    "y0 = xnor t8 g1"
+  ]
+}

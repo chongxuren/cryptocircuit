@@ -1,0 +1,141 @@
+{
+  "schema": "circuit-ir/v1",
+  "id": "ascon_inverse_sbox_6and_13xor_depth17",
+  "source": {
+    "sha256": "f77b44189aa7a155c31625ed04e5a61cae11747b5a4348008921c13a73f9e165",
+    "pages": [
+      12,
+      13
+    ],
+    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13",
+    "artifact": {
+      "repository": "https://github.com/lemontrr/MCoptimal",
+      "commit": "303c00e21158e0b833593239a791f5f4f48ad048",
+      "sha256": "a46e2b2301bef930a43a8bcf43641ecae2c05b068ff2b79ff808cf2e660c114e"
+    }
+  },
+  "interface": {
+    "inputs": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "outputs": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ]
+  },
+  "target": {
+    "kind": "lookup_table",
+    "name": "MCoptimal artifact Ascon_inv (5-bit)",
+    "input_bit_order": "lsb0",
+    "output_bit_order": "lsb0",
+    "table": [
+      "0x14",
+      "0x1a",
+      "0x7",
+      "0xd",
+      "0x0",
+      "0x9",
+      "0xe",
+      "0x12",
+      "0xa",
+      "0x6",
+      "0x1d",
+      "0x1",
+      "0x19",
+      "0x15",
+      "0x13",
+      "0x1e",
+      "0x18",
+      "0x16",
+      "0xb",
+      "0x11",
+      "0x3",
+      "0x5",
+      "0x1c",
+      "0x1f",
+      "0x17",
+      "0x1b",
+      "0x4",
+      "0x8",
+      "0xf",
+      "0xc",
+      "0x10",
+      "0x2"
+    ]
+  },
+  "challenge": {
+    "goal": "minimize binary XOR2 count with six AND2 gates",
+    "basis": "binary fan-in-two AND2/XOR2 with NOT free",
+    "hard_bounds": {
+      "and": 6,
+      "nonlinear_depth": 6
+    }
+  },
+  "claim": {
+    "counts": {
+      "and": 6,
+      "xor": 13,
+      "xor2": 13,
+      "linear": 13,
+      "nonlinear": 6,
+      "total": 19
+    },
+    "depth": 17,
+    "nonlinear_depth": 6,
+    "not_verified": [
+      "global minimum binary-XOR count",
+      "global state-of-the-art status outside the fixed artifact target",
+      "mapped area, delay, power, energy, or masking cost"
+    ]
+  },
+  "derivation": {
+    "method": "Extended-BP eRNBP optimization of the affine shells around the pinned six-AND MCoptimal circuit",
+    "tool_repository": "https://github.com/lemontrr/Extended-BP-Framework.git",
+    "tool_commit": "11e6b783f179cb9089a08be597d5974e99966e3a",
+    "candidate_sha256": "b972e2bde31ad0b2e0dfe257049bb492b3c4f1668e8423275f6ea29fff834d2e",
+    "receipt_sha256": "3bef918d3b1aa9ac94d01f3154fdc12c37d9eae25635fb0b30e3cb4d08927f55",
+    "campaign_seed": 202625800000,
+    "campaign_trials": 100000,
+    "campaign_best_trial": 610,
+    "free_complement_simplification": "cancel double logical complements and reuse an already available complement, then prune unused free-complement wires before measuring binary depth"
+  },
+  "program": [
+    "g0 = and x0 x4",
+    "t0 = xor x0 x4",
+    "t1 = xor x1 x2",
+    "t2 = xor x3 t0",
+    "t3 = xor x1 x4",
+    "t4 = xor g0 t3",
+    "g1 = and x2 t4",
+    "t5 = xor t2 g1",
+    "y3 = alias t5",
+    "g2_left_not = not_free t0",
+    "g2_right_not = not_free t5",
+    "g2 = and g2_left_not g2_right_not",
+    "t6 = xor x4 g2",
+    "r7 = not_free t6",
+    "g3 = and t1 r7",
+    "t7 = xor x2 g3",
+    "g4_left_not = not_free t2",
+    "g4_right_not = not_free t7",
+    "g4 = and g4_left_not g4_right_not",
+    "t8 = xor t0 g4",
+    "g5_left_not = not_free x0",
+    "g5 = and g5_left_not t8",
+    "t9 = xor t1 g5",
+    "y1 = not_free t9",
+    "t10 = xor t6 t9",
+    "y0 = alias t10",
+    "t11 = xor t5 t7",
+    "y2 = not_free t11",
+    "t12 = xor t8 t10",
+    "y4 = alias t12"
+  ]
+}

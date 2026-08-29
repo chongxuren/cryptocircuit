@@ -1,0 +1,144 @@
+{
+  "schema": "circuit-ir/v1",
+  "id": "ascon_inverse_sbox_mcoptimal_binary_6and_32xor",
+  "source": {
+    "sha256": "f77b44189aa7a155c31625ed04e5a61cae11747b5a4348008921c13a73f9e165",
+    "pages": [
+      12,
+      13
+    ],
+    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13",
+    "artifact": {
+      "repository": "https://github.com/lemontrr/MCoptimal",
+      "commit": "303c00e21158e0b833593239a791f5f4f48ad048",
+      "sha256": "a46e2b2301bef930a43a8bcf43641ecae2c05b068ff2b79ff808cf2e660c114e"
+    }
+  },
+  "interface": {
+    "inputs": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "outputs": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ]
+  },
+  "target": {
+    "kind": "lookup_table",
+    "name": "MCoptimal artifact Ascon_inv (5-bit)",
+    "input_bit_order": "lsb0",
+    "output_bit_order": "lsb0",
+    "table": [
+      "0x14",
+      "0x1a",
+      "0x7",
+      "0xd",
+      "0x0",
+      "0x9",
+      "0xe",
+      "0x12",
+      "0xa",
+      "0x6",
+      "0x1d",
+      "0x1",
+      "0x19",
+      "0x15",
+      "0x13",
+      "0x1e",
+      "0x18",
+      "0x16",
+      "0xb",
+      "0x11",
+      "0x3",
+      "0x5",
+      "0x1c",
+      "0x1f",
+      "0x17",
+      "0x1b",
+      "0x4",
+      "0x8",
+      "0xf",
+      "0xc",
+      "0x10",
+      "0x2"
+    ]
+  },
+  "challenge": {
+    "goal": "minimize binary XOR2 count with six AND2 gates",
+    "basis": "binary fan-in-two AND2/XOR2 with NOT free",
+    "hard_bounds": {
+      "and": 6,
+      "nonlinear_depth": 6
+    }
+  },
+  "claim": {
+    "counts": {
+      "and": 6,
+      "xor": 32,
+      "xor2": 32,
+      "linear": 32,
+      "nonlinear": 6,
+      "total": 38
+    },
+    "depth": 16,
+    "nonlinear_depth": 6,
+    "not_verified": [
+      "global minimum binary-XOR count",
+      "global state-of-the-art status outside the fixed artifact target",
+      "mapped area, delay, power, energy, or masking cost"
+    ]
+  },
+  "derivation": {
+    "method": "mechanical left-associative lowering of every affine expression in the pinned MCoptimal artifact to binary XOR2; constants use free logical complement"
+  },
+  "program": [
+    "a0 = and x0 x4",
+    "g0 = xor a0 x4",
+    "l0 = xor x1 g0",
+    "a1 = and x2 l0",
+    "baseline_xor_0 = xor a1 x0",
+    "baseline_xor_1 = xor baseline_xor_0 x3",
+    "g1 = xor baseline_xor_1 x4",
+    "l1 = xor x0 x4",
+    "g2 = and l1 g1",
+    "l2 = xor x1 x2",
+    "baseline_xor_3 = xor x0 g1",
+    "l3 = xor baseline_xor_3 g2",
+    "g3 = and l2 l3",
+    "baseline_xor_5 = xor x0 x3",
+    "l4 = xor baseline_xor_5 x4",
+    "l5 = xor x2 g3",
+    "g4 = and l4 l5",
+    "baseline_xor_7 = xor x2 x3",
+    "baseline_xor_8 = xor baseline_xor_7 g3",
+    "l6 = xor baseline_xor_8 g4",
+    "g5 = and x0 l6",
+    "baseline_xor_10 = xor x1 x3",
+    "baseline_xor_11 = xor baseline_xor_10 g1",
+    "baseline_xor_12 = xor baseline_xor_11 g2",
+    "baseline_xor_13 = xor baseline_xor_12 g3",
+    "baseline_xor_14 = xor baseline_xor_13 g4",
+    "y0 = xor baseline_xor_14 g5",
+    "baseline_xor_16 = xor x0 x1",
+    "baseline_xor_17 = xor baseline_xor_16 x3",
+    "baseline_xor_18 = xor baseline_xor_17 g3",
+    "baseline_xor_19 = xor baseline_xor_18 g4",
+    "y1 = xor baseline_xor_19 g5",
+    "baseline_xor_21 = xor x2 g1",
+    "baseline_xor_22 = xor baseline_xor_21 g3",
+    "y2 = not_free baseline_xor_22",
+    "y3 = alias g1",
+    "baseline_xor_23 = xor x1 x2",
+    "baseline_xor_24 = xor baseline_xor_23 g1",
+    "baseline_xor_25 = xor baseline_xor_24 g2",
+    "baseline_xor_26 = xor baseline_xor_25 g5",
+    "y4 = not_free baseline_xor_26"
+  ]
+}

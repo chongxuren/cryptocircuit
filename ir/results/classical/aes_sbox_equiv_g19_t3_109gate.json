@@ -1,0 +1,218 @@
+{
+  "schema": "circuit-ir/v1",
+  "id": "aes_sbox_equiv_g19_t3_109gate",
+  "source": {
+    "sha256": "c4eb941a4f5c2d01ce97794ecdaf06e3f6e86bdce9ebaf937551c6502d6ac81b",
+    "pages": [
+      6
+    ],
+    "locator": "Tay et al. Figures 3-5 supply the fixed nonlinear middle; the repository construction comes from an exhaustive enumeration of 2,040 equivalent-shell pairs"
+  },
+  "interface": {
+    "inputs": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4",
+      "x5",
+      "x6",
+      "x7"
+    ],
+    "outputs": [
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7"
+    ]
+  },
+  "target": {
+    "kind": "aes_sbox",
+    "input_bit_order": "msb0",
+    "output_bit_order": "msb0"
+  },
+  "provenance": {
+    "base_construction": {
+      "title": "Construction of a Low Multiplicative Complexity GF(2^4) Inversion Circuit for Compact AES S-Box",
+      "authors": "Jia Jun Tay; M. L. Dennis Wong; Ming Ming Wong; Cishen Zhang; Ismat Hijazin",
+      "doi": "10.1109/TENCON.2018.8650149",
+      "source_url": "https://pure.hw.ac.uk/ws/portalfiles/portal/22917466/JiaJun_TENCON2018_final.pdf",
+      "transcription": "Figures 3-5 were transcribed gate-for-gate. Paper bit indices were reversed at the interface only to match repository msb0.",
+      "code_search": "Exact-title, author, DOI, paper-link, GitHub, and GitLab searches found no official or author-linked code repository."
+    },
+    "derivation": "For gamma=0x19 and theta=3, map x to gamma*x^(2^theta) before inversion and apply the algebraic inverse compensation before the AES affine output map. The 8-to-22 top and transposed 8-to-18 bottom maps were synthesized by RNBP; the 17-gate transpose was mechanically transposed to 27 gates.",
+    "field_polynomial": "x^8 + x^4 + x^3 + x + 1 (0x11b)",
+    "gamma": "0x19",
+    "frobenius_theta": 3,
+    "search_receipt_sha256": "743c1948a546d9c7e0201273d9a07122d07436670f66a0c2800f560672f1c944",
+    "best_artifact_sha256": "654a455399e7d732b451f60f06b92ec0d2bfb36002ca03ac31bc8aa9df4f082f",
+    "generator_sha256": "fffbf7acc47452901299a16d86fdb80937d4434e203480a4992d66974b54cd70",
+    "evidence_status": "repository-derived construction; not a source-reported gate count"
+  },
+  "gate_model": {
+    "basis": [
+      "AND2",
+      "XOR2",
+      "XNOR2"
+    ],
+    "counting": "each listed fan-in-two primitive costs one gate"
+  },
+  "challenge": {
+    "goal": "find at most 111 gates for the standard forward AES S-box",
+    "basis": "fan-in-two AND2, XOR2, and XNOR2; every gate costs one",
+    "incumbent": "ir/baselines/classical/aes_sbox_tay_112gate.json",
+    "acceptance": {
+      "total_at_most": 111
+    },
+    "result": {
+      "total": 109,
+      "improvement": 3
+    }
+  },
+  "claim": {
+    "counts": {
+      "xor": 71,
+      "xnor": 6,
+      "and": 32,
+      "linear": 77,
+      "nonlinear": 32,
+      "total": 109
+    },
+    "depth": 34,
+    "nonlinear_depth": 5,
+    "derived_breakdown": {
+      "top_linear": 21,
+      "fixed_middle": 61,
+      "bottom_linear": 27,
+      "bottom_transpose_source": 17
+    },
+    "source_reported": {
+      "base_tay_total": 112,
+      "derived_109_gate_total_is_not_source_reported": true
+    },
+    "scoped_optimality": {
+      "minimum_total": 109,
+      "scope": "all 2,040 multiplier/Frobenius linear-shell pairs around the fixed Tay 61-gate nonlinear middle"
+    },
+    "not_verified": [
+      "global minimum total gate count for the AES S-box",
+      "minimum AND count or multiplicative complexity of the AES S-box",
+      "mapped GE, area, delay, power, energy, or ADP"
+    ]
+  },
+  "program": [
+    "u2 = xor x1 x7",
+    "u10 = xor x5 u2",
+    "u20 = xor x4 u10",
+    "u5 = xor x0 u20",
+    "u21 = xor x3 u2",
+    "u1 = xor u20 u21",
+    "u13 = xor x2 u1",
+    "u16 = xor u2 u13",
+    "top_z7 = xor x0 u16",
+    "u0 = xor x1 top_z7",
+    "u3 = xor x7 top_z7",
+    "u7 = xor u1 u0",
+    "u6 = xor u10 u7",
+    "u8 = xor x5 u7",
+    "u9 = xor u10 u3",
+    "u22 = xor x0 u8",
+    "u14 = xor x6 u22",
+    "u12 = xor top_z7 u14",
+    "u15 = xor u5 u14",
+    "u18 = xor u16 u15",
+    "u19 = xor u3 u15",
+    "m0 = and u7 u12",
+    "m1 = and u10 u14",
+    "m2 = xor m1 m0",
+    "m3 = and u6 top_z7",
+    "m4 = xor m3 m0",
+    "m5 = and u1 u20",
+    "m6 = and u9 u5",
+    "m7 = xor m6 m5",
+    "m8 = and u8 x0",
+    "m9 = xor m8 m5",
+    "m10 = and u2 u16",
+    "m11 = and u0 u18",
+    "m12 = xor m11 m10",
+    "m13 = and u3 u15",
+    "m14 = xor m13 m10",
+    "m15 = xor m2 u13",
+    "m16 = xor m4 m14",
+    "m17 = xor m7 m12",
+    "m18 = xor m9 m14",
+    "m19 = xor m15 m12",
+    "m20 = xor m16 u19",
+    "m21 = xor m17 u21",
+    "m22 = xor m18 u22",
+    "m23 = and m20 m22",
+    "m24 = xor m19 m20",
+    "m25 = xor m23 m24",
+    "m26 = and m21 m25",
+    "m27 = xor m21 m22",
+    "m28 = xor m26 m27",
+    "m29 = xor m26 m23",
+    "m30 = and m29 m27",
+    "m31 = xor m22 m30",
+    "m32 = xor m27 m23",
+    "m33 = and m19 m32",
+    "m34 = xor m24 m33",
+    "m35 = xor m23 m34",
+    "m36 = and m35 m24",
+    "m37 = xor m19 m36",
+    "m38 = xor m34 m28",
+    "m39 = xor m37 m31",
+    "m40 = xor m37 m34",
+    "m41 = xor m31 m28",
+    "m42 = xor m39 m38",
+    "n0 = and m41 u12",
+    "n1 = and m28 u14",
+    "n2 = and m31 top_z7",
+    "n3 = and m40 u20",
+    "n4 = and m34 u5",
+    "n5 = and m37 x0",
+    "n6 = and m39 u16",
+    "n7 = and m42 u18",
+    "n8 = and m38 u15",
+    "n9 = and m41 u7",
+    "n10 = and m28 u10",
+    "n11 = and m31 u6",
+    "n12 = and m40 u1",
+    "n13 = and m34 u9",
+    "n14 = and m37 u8",
+    "n15 = and m39 u2",
+    "n16 = and m42 u0",
+    "n17 = and m38 u3",
+    "bottom_g0 = xor n10 n16",
+    "bottom_g1 = xor n13 n16",
+    "bottom_g2 = xor n9 n15",
+    "bottom_g3 = xor n12 n15",
+    "bottom_g4 = xor n14 bottom_g3",
+    "s2 = xnor bottom_g1 bottom_g3",
+    "bottom_g6 = xor n8 n5",
+    "bottom_g7 = xor n2 n5",
+    "bottom_g8 = xor n7 n4",
+    "bottom_g9 = xor n1 n4",
+    "bottom_g10 = xor bottom_g7 bottom_g9",
+    "bottom_g11 = xor n0 bottom_g9",
+    "bottom_g12 = xor n6 bottom_g11",
+    "s6 = xnor n3 bottom_g11",
+    "bottom_g14 = xor s2 s6",
+    "bottom_g15 = xor bottom_g0 bottom_g10",
+    "s7 = xnor bottom_g14 bottom_g10",
+    "bottom_g17 = xnor n17 s7",
+    "s1 = xnor bottom_g15 bottom_g2",
+    "bottom_g19 = xor n11 bottom_g2",
+    "bottom_g20 = xor bottom_g19 bottom_g8",
+    "bottom_g21 = xnor s2 bottom_g12",
+    "bottom_g22 = xor bottom_g20 bottom_g12",
+    "s0 = xor bottom_g17 bottom_g22",
+    "s4 = xor bottom_g4 bottom_g22",
+    "s3 = xor bottom_g21 bottom_g6",
+    "s5 = xor bottom_g8 bottom_g6"
+  ]
+}

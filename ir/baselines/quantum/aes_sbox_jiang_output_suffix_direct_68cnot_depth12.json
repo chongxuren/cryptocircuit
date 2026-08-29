@@ -1,0 +1,622 @@
+{
+  "boundary": {
+    "accumulator_initial_state": "arbitrary",
+    "accumulator_wire_order": [
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7"
+    ],
+    "aes_bit_order": "msb0",
+    "basis_semantics": "|m>|y> -> |m>|y xor A*m xor c>",
+    "constant_outputs": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "input_wires": [
+      "M46",
+      "M47",
+      "M48",
+      "M49",
+      "M50",
+      "M51",
+      "M52",
+      "M53",
+      "M54",
+      "M55",
+      "M56",
+      "M57",
+      "M58",
+      "M59",
+      "M60",
+      "M61",
+      "M62",
+      "M63",
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7"
+    ],
+    "operation": "unitary",
+    "output_wires": [
+      "M46",
+      "M47",
+      "M48",
+      "M49",
+      "M50",
+      "M51",
+      "M52",
+      "M53",
+      "M54",
+      "M55",
+      "M56",
+      "M57",
+      "M58",
+      "M59",
+      "M60",
+      "M61",
+      "M62",
+      "M63",
+      "s0",
+      "s1",
+      "s2",
+      "s3",
+      "s4",
+      "s5",
+      "s6",
+      "s7"
+    ],
+    "product_inputs_available_at_boundary": true,
+    "product_wire_order": [
+      "M46",
+      "M47",
+      "M48",
+      "M49",
+      "M50",
+      "M51",
+      "M52",
+      "M53",
+      "M54",
+      "M55",
+      "M56",
+      "M57",
+      "M58",
+      "M59",
+      "M60",
+      "M61",
+      "M62",
+      "M63"
+    ],
+    "target_rows": [
+      [
+        3,
+        4,
+        6,
+        7,
+        9,
+        10,
+        15,
+        16
+      ],
+      [
+        0,
+        1,
+        6,
+        7,
+        9,
+        10,
+        15,
+        16
+      ],
+      [
+        0,
+        2,
+        6,
+        8,
+        12,
+        14,
+        15,
+        17
+      ],
+      [
+        0,
+        1,
+        3,
+        4,
+        9,
+        10,
+        15,
+        16
+      ],
+      [
+        1,
+        2,
+        4,
+        5,
+        9,
+        10,
+        15,
+        16
+      ],
+      [
+        0,
+        2,
+        3,
+        4,
+        7,
+        8,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16
+      ],
+      [
+        4,
+        5,
+        7,
+        8,
+        12,
+        13,
+        15,
+        16
+      ],
+      [
+        0,
+        2,
+        3,
+        5,
+        12,
+        13,
+        15,
+        16
+      ]
+    ],
+    "terminal_permutation": "identity"
+  },
+  "comparison": {
+    "depth_lower_bound": "output s5 is incident to 12 CNOTs",
+    "depth_upper_bound": "the supplied 12-layer schedule includes all four X gates",
+    "source_formula_terms": 68
+  },
+  "id": "aes_sbox_jiang_output_suffix_direct_68cnot_depth12",
+  "layers": [
+    [
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 14,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 5,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 5,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 5,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 13,
+        "gate": "CNOT",
+        "target": 25
+      },
+      {
+        "gate": "X",
+        "target": 19
+      }
+    ],
+    [
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 13,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 11,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 14,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 25
+      },
+      {
+        "gate": "X",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 17,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "gate": "X",
+        "target": 25
+      }
+    ],
+    [
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "gate": "X",
+        "target": 20
+      }
+    ]
+  ],
+  "model": {
+    "ancilla_final_state": "not_applicable_all_wires_are_boundary_io",
+    "ancilla_initial_state": "not_applicable_all_wires_are_boundary_io",
+    "classical_feed_forward": false,
+    "clean_ancillas": 0,
+    "compilation_level": "logical_pre_device_mapping",
+    "connectivity": "all_to_all",
+    "dirty_ancillas": 0,
+    "fault_tolerance_model": null,
+    "gate_set": [
+      "CNOT",
+      "X"
+    ],
+    "logical_qubits": 26,
+    "measurements": 0,
+    "noise_model": null,
+    "physical_qubits": null
+  },
+  "provenance": {
+    "construction_note": "Direct one-CNOT-per-listed-product realization of the official supplemental equations. Table 3 gate 189 prints Anc20 where the supplement requires M53=Anc47; this record follows the authoritative equation and records the discrepancy separately.",
+    "evidence_locator": "Supplementary Material section 2, Outputs, p.2; main PDF Table 3, gates 186-257, physical p.8",
+    "evidence_status": "source-derived-verified",
+    "files": [],
+    "official_code_repository": "https://github.com/kyolxs/Constructing-Resource-Efficient-Quantum-Circuits-for-AES",
+    "official_code_status": "unavailable_404_on_2026-08-29"
+  },
+  "resources": {
+    "classical_control_operations": 0,
+    "clean_ancillas": 0,
+    "cnot_count": 68,
+    "cnot_depth": 12,
+    "dirty_ancillas": 0,
+    "logical_qubits": 26,
+    "measurement_rounds": 0,
+    "physical_qubits": null,
+    "t_count": 0,
+    "t_depth": 0,
+    "toffoli_count": 0,
+    "toffoli_depth": 0,
+    "topology_overhead": null,
+    "total_gate_count": 72,
+    "total_logical_depth": 12,
+    "x_count": 4
+  },
+  "schema": "quantum-affine-circuit-ir/v1",
+  "target": "aes_sbox_jiang_output_accumulation"
+}
