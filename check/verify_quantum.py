@@ -1299,6 +1299,34 @@ NCT_DERIVED_CONFIGS: dict[str, dict[str, Any]] = {
             "shared_linear_final_output_wires": [11, 12, 13],
         },
     },
+    "ascon_sbox_repository_toffoli_depth1_42cnot_depth19": {
+        "target": "ascon_sbox_forward_toffoli_depth1_nct",
+        "direct_predecessor_record_path": "ir/baselines/quantum/ascon_sbox_repository_toffoli_depth1_43cnot_depth19.json",
+        "acceptance_bounds": {
+            "logical_qubits": 15,
+            "clean_ancillas": 5,
+            "zero_initialized_output_qubits": 5,
+            "dirty_ancillas": 0,
+            "x_count_at_most": 1,
+            "cnot_count_at_most": 42,
+            "total_gate_count_at_most": 48,
+            "toffoli_count_exactly": 5,
+            "toffoli_depth_at_most": 1,
+            "total_logical_depth_at_most": 19,
+            "measurements_exactly": 0,
+        },
+        "construction_requirements": {
+            "context_contract_id": "ascon_sbox_initialized_isometry_context_v1",
+            "deleted_predecessor_gate_indices": [32, 35],
+            "insert_boundary": 11,
+            "insert_cnot": [1, 11],
+            "method": "initialized-subspace contextual two-delete/one-insert resynthesis",
+            "predecessor_cnot_count": 43,
+            "predecessor_gate_count": 49,
+            "search_space_cases": 8722980,
+            "toffoli_layer_preserved_verbatim": True,
+        },
+    },
 }
 
 def nct_expected_boundary(target: str, config: dict[str, Any]) -> dict[str, Any]:

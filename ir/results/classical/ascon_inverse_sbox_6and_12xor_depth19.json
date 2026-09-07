@@ -1,0 +1,167 @@
+{
+  "schema": "circuit-ir/v1",
+  "id": "ascon_inverse_sbox_6and_12xor_depth19",
+  "source": {
+    "sha256": "f77b44189aa7a155c31625ed04e5a61cae11747b5a4348008921c13a73f9e165",
+    "pages": [
+      12,
+      13
+    ],
+    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13; paper-linked file [excluded-research-artifact]",
+    "artifact": {
+      "repository": "https://github.com/lemontrr/MCoptimal",
+      "commit": "303c00e21158e0b833593239a791f5f4f48ad048",
+      "sha256": "a46e2b2301bef930a43a8bcf43641ecae2c05b068ff2b79ff808cf2e660c114e"
+    }
+  },
+  "interface": {
+    "inputs": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "outputs": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ]
+  },
+  "target": {
+    "kind": "lookup_table",
+    "name": "MCoptimal artifact Ascon_inv (5-bit)",
+    "input_bit_order": "lsb0",
+    "output_bit_order": "lsb0",
+    "table": [
+      "0x14",
+      "0x1a",
+      "0x7",
+      "0xd",
+      "0x0",
+      "0x9",
+      "0xe",
+      "0x12",
+      "0xa",
+      "0x6",
+      "0x1d",
+      "0x1",
+      "0x19",
+      "0x15",
+      "0x13",
+      "0x1e",
+      "0x18",
+      "0x16",
+      "0xb",
+      "0x11",
+      "0x3",
+      "0x5",
+      "0x1c",
+      "0x1f",
+      "0x17",
+      "0x1b",
+      "0x4",
+      "0x8",
+      "0xf",
+      "0xc",
+      "0x10",
+      "0x2"
+    ]
+  },
+  "challenge": {
+    "goal": "use exactly six AND2 gates and at most twelve XOR2 gates",
+    "basis": "binary fan-in-two AND2/XOR2 with NOT free",
+    "hard_bounds": {
+      "and": 6,
+      "nonlinear_depth": 6
+    },
+    "acceptance": {
+      "xor_at_most": 12,
+      "counted_total_at_most": 18
+    }
+  },
+  "claim": {
+    "counts": {
+      "and": 6,
+      "xor": 12,
+      "xor2": 12,
+      "linear": 12,
+      "nonlinear": 6,
+      "total": 18
+    },
+    "depth": 19,
+    "nonlinear_depth": 6,
+    "not_verified": [
+      "a global minimum below the checked construction",
+      "global state-of-the-art status outside the frozen artifact target",
+      "mapped area, delay, power, energy, or masking cost"
+    ]
+  },
+  "derivation": {
+    "method": "exact truth-table SAT for one delete-one operation schedule while requiring at least five of the incumbent's six ordered nonlinear truth-table classes up to free complement",
+    "schedule": "AXXXXAXAXAXAXAXXXX",
+    "schedule_index": 5110,
+    "cnf_sha256": "6eabb4bc54a25c15cc88b6f9d7aa9960f84e574a7f04e23faf4c63365de014e8",
+    "program_sha256": "f270224280844641cfd73c264b81cf9fa77d89d2afe64c55f7fe2e0b5e8cde0a",
+    "solver_result": "SAT",
+    "solver_job_id": 14957173,
+    "structural_boundary": {
+      "selection": "delete_one_one_free",
+      "nonlinear_class_tables_hex": [
+        "aaaa0000",
+        "9090c0c0",
+        "802a4015",
+        "00283c28",
+        "05222205",
+        "50550005"
+      ],
+      "max_free_nonlinear_classes": 1
+    },
+    "candidate_record": "candidate.json (excluded research receipt)",
+    "candidate_record_sha256": "4820a79b63f1aed035da96fd0c014ee596eba51a85e23fd68f66099948cd68d8",
+    "manifest": "delete-one-one-free.manifest.jsonl (excluded research receipt)",
+    "manifest_sha256": "8099e3ed1e3951975495d13948b3937f9ca33c6f42921fd184e0eeb2008bf542",
+    "result_stream": "results.raw.jsonl (excluded research receipt)",
+    "result_stream_sha256": "bf3695bd2b21abc352f07aa0d4e361a804a0fef55d0028d363a2247ab4837dc2",
+    "candidate_archive": "candidate-case.tar.gz (excluded research receipt)",
+    "candidate_archive_sha256": "7b1baae4267151b107aa752414e5085cc6d843f48b3f110c2e09eeaba3e275d5",
+    "independent_candidate_replay": "candidate-replay.json (excluded research receipt)",
+    "independent_candidate_replay_sha256": "d36612e6f176502dfe7832f581aa97ae2a9f4076943086543ce0866510b392a6"
+  },
+  "program": [
+    "not_x0 = not_free x0",
+    "g0 = and not_x0 x4",
+    "g1 = xor x1 x2",
+    "g2 = xor x0 x4",
+    "g3 = xor x3 g2",
+    "g4 = xor g0 g1",
+    "not_g4 = not_free g4",
+    "g5 = and x2 not_g4",
+    "g6 = xor g3 g5",
+    "not_g2 = not_free g2",
+    "not_g6 = not_free g6",
+    "g7 = and not_g2 not_g6",
+    "g8 = xor x4 g7",
+    "not_g8 = not_free g8",
+    "g9 = and g4 not_g8",
+    "g10 = xor x2 g9",
+    "not_g3 = not_free g3",
+    "not_g10 = not_free g10",
+    "g11 = and not_g3 not_g10",
+    "g12 = xor g2 g11",
+    "g13 = and g8 g12",
+    "g14 = xor g6 g10",
+    "g15 = xor g1 g13",
+    "g16 = xor g8 g15",
+    "g17 = xor g12 g16",
+    "y0 = alias g16",
+    "not_g15 = not_free g15",
+    "y1 = alias not_g15",
+    "not_g14 = not_free g14",
+    "y2 = alias not_g14",
+    "y3 = alias g6",
+    "y4 = alias g17"
+  ]
+}
