@@ -7,12 +7,12 @@
       12,
       13
     ],
-    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13",
     "artifact": {
       "repository": "https://github.com/lemontrr/MCoptimal",
       "commit": "303c00e21158e0b833593239a791f5f4f48ad048",
       "sha256": "a46e2b2301bef930a43a8bcf43641ecae2c05b068ff2b79ff808cf2e660c114e"
-    }
+    },
+    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13; paper-linked file"
   },
   "interface": {
     "inputs": [

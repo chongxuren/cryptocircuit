@@ -15,14 +15,6 @@
         "sha256": "8412255209c6d14bceac2ec29ca13ea164758a7ac9d4447b23596d757793ab4b"
       },
       {
-        "path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.json",
-        "sha256": "855ec8608bd599e106e28baac7d4532f5d25b59c123aac6b15ac5357ee651a3e"
-      },
-      {
-        "path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.qasm",
-        "sha256": "9c4185d28c9afeb444da3973014815503c6f3d4d84656bc4d08509cbb89be896"
-      },
-      {
         "path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
         "sha256": "b373bc1f2fd683bcabf8603cf182fd13fdb89791a549af171b997bf1a20f171f"
       }
@@ -130,28 +122,6 @@
       "total_logical_depth": 1594,
       "cnot_depth": null,
       "toffoli_depth": 793,
-      "t_depth": null,
-      "measurement_rounds": 0,
-      "classical_control_operations": 0,
-      "topology_overhead": null
-    }
-  },
-  "direct_predecessor": {
-    "record_path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.json",
-    "resources": {
-      "logical_qubits": 9,
-      "physical_qubits": null,
-      "clean_ancillas": 1,
-      "dirty_ancillas": 0,
-      "zero_initialized_output_qubits": 0,
-      "total_gate_count": 1948,
-      "x_count": 233,
-      "cnot_count": 883,
-      "toffoli_count": 832,
-      "t_count": null,
-      "total_logical_depth": 1591,
-      "cnot_depth": null,
-      "toffoli_depth": 792,
       "t_depth": null,
       "measurement_rounds": 0,
       "classical_control_operations": 0,

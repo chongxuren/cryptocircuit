@@ -428,6 +428,20 @@ NCT_SOURCE_CONFIGS: dict[str, dict[str, Any]] = {
         "layer_full_depth": 1597,
         "layer_toffoli_depth": 793,
     },
+    "ascon_sbox_forward_minimal_width_nct": {
+        "width": 5,
+        "input_width": 5,
+        "qasm_path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_raw.qasm",
+        "layer_qasm_path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_layers.qasm",
+        "output_coordinate_wires": [0, 2, 4, 1, 3],
+        "clean_workspace_wires": [],
+        "zero_initialized_output_wires": [],
+        "preserved_input_wires": [],
+        "clean_ancillas": 0,
+        "zero_initialized_output_qubits": 0,
+        "layer_full_depth": 44,
+        "layer_toffoli_depth": 7,
+    },
     "ascon_sbox_forward_toffoli_depth1_nct": {
         "width": 15,
         "input_width": 5,
@@ -445,6 +459,28 @@ NCT_SOURCE_CONFIGS: dict[str, dict[str, Any]] = {
 }
 
 NCT_REPOSITORY_CONFIGS: dict[str, dict[str, Any]] = {
+    "ascon_sbox_repository_width5_7toffoli_34cnot_depth41": {
+        "target": "ascon_sbox_forward_minimal_width_nct",
+        "source_record_path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_nct.json",
+        "candidate_qasm_path": "ir/results/quantum/ascon_sbox_repository_width5_7toffoli_34cnot_depth41.qasm",
+        "acceptance_bounds": {
+            "logical_qubits_at_most": 5,
+            "clean_ancillas_at_most": 0,
+            "dirty_ancillas": 0,
+            "x_count_at_most": 8,
+            "cnot_count_at_most": 34,
+            "toffoli_count_at_most": 7,
+            "toffoli_depth_at_most": 7,
+            "total_logical_depth_at_most": 41,
+            "measurements": 0,
+        },
+        "strict_source_improvement_metrics": (
+            "x_count",
+            "cnot_count",
+            "total_gate_count",
+            "total_logical_depth",
+        ),
+    },
     "aes_sbox_repository_width9_832toffoli": {
         "target": "aes_sbox_forward_minimal_width_nct",
         "source_record_path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
@@ -460,11 +496,32 @@ NCT_REPOSITORY_CONFIGS: dict[str, dict[str, Any]] = {
             "total_logical_depth_at_most": 1594,
             "measurements": 0,
         },
+        "strict_source_improvement_metrics": ("toffoli_count",),
+    },
+    "aes_sbox_repository_width9_881cnot_833toffoli": {
+        "target": "aes_sbox_forward_minimal_width_nct",
+        "source_record_path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
+        "candidate_qasm_path": "ir/results/quantum/aes_sbox_repository_width9_881cnot_833toffoli.qasm",
+        "acceptance_bounds": {
+            "logical_qubits_at_most": 9,
+            "clean_ancillas_at_most": 1,
+            "dirty_ancillas": 0,
+            "x_count_at_most": 233,
+            "cnot_count_at_most": 881,
+            "toffoli_count_at_most": 833,
+            "toffoli_depth_at_most": 793,
+            "total_logical_depth_at_most": 1591,
+            "measurements": 0,
+        },
+        "strict_source_improvement_metrics": (
+            "cnot_count",
+            "total_gate_count",
+            "total_logical_depth",
+        ),
     },
     "aes_sbox_repository_width9_829toffoli": {
         "target": "aes_sbox_forward_minimal_width_nct",
         "source_record_path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
-        "direct_predecessor_record_path": "ir/baselines/quantum/aes_sbox_repository_width9_832toffoli.json",
         "candidate_qasm_path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
         "acceptance_bounds": {
             "logical_qubits_at_most": 9,
@@ -477,6 +534,39 @@ NCT_REPOSITORY_CONFIGS: dict[str, dict[str, Any]] = {
             "total_logical_depth_at_most": 1591,
             "measurements": 0,
         },
+        "strict_source_improvement_metrics": (
+            "cnot_count",
+            "toffoli_count",
+            "total_gate_count",
+            "toffoli_depth",
+            "total_logical_depth",
+        ),
+    },
+    "aes_sbox_repository_width9_828toffoli": {
+        "target": "aes_sbox_forward_minimal_width_nct",
+        "source_record_path": "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_nct.json",
+        "direct_predecessor_record_path": "ir/baselines/quantum/aes_sbox_repository_width9_829toffoli.json",
+        "candidate_qasm_path": "ir/results/quantum/aes_sbox_repository_width9_828toffoli.qasm",
+        "acceptance_bounds": {
+            "logical_qubits_at_most": 9,
+            "clean_ancillas_at_most": 1,
+            "dirty_ancillas": 0,
+            "x_count_at_most": 233,
+            "cnot_count_at_most": 883,
+            "toffoli_count_at_most": 828,
+            "toffoli_depth_at_most": 789,
+            "total_logical_depth_at_most": 1581,
+            "measurements": 0,
+        },
+        "strict_source_improvement_metrics": ("toffoli_count",),
+        "strict_direct_improvement_metrics": (
+            "x_count",
+            "cnot_count",
+            "toffoli_count",
+            "total_gate_count",
+            "toffoli_depth",
+            "total_logical_depth",
+        ),
     },
 }
 
@@ -995,7 +1085,7 @@ def verify_nct_repository_record(record: dict[str, Any]) -> dict[str, Any]:
     source_record = json.loads(source_record_path.read_text(encoding="utf-8"))
     if not isinstance(source_record, dict):
         raise VerificationError("source predecessor record root must be an object")
-    source_summary = verify_nct_record(source_record)
+    verify_nct_record(source_record)
     require_equal(source.get("resources"), source_record.get("resources"), "source resources")
 
     direct_resources: dict[str, Any] | None = None
@@ -1083,8 +1173,15 @@ def verify_nct_repository_record(record: dict[str, Any]) -> dict[str, Any]:
             raise VerificationError(f"candidate exceeds {name}: {actual} > {acceptance[name]}")
     require_equal(expected_resources["dirty_ancillas"], acceptance["dirty_ancillas"], "dirty ancillas")
     require_equal(record["model"]["measurements"], acceptance["measurements"], "measurements")
-    if counts["toffoli_count"] >= source_summary["toffoli_count"]:
-        raise VerificationError("candidate does not strictly improve source Toffoli count")
+    source_resources = source.get("resources")
+    if not isinstance(source_resources, dict):
+        raise VerificationError("source predecessor resources must be an object")
+    for name in repository_config.get("strict_source_improvement_metrics", ()):
+        if expected_resources[name] >= source_resources[name]:
+            raise VerificationError(
+                f"candidate does not strictly improve source {name}: "
+                f"{expected_resources[name]} >= {source_resources[name]}"
+            )
     if direct_resources is not None:
         comparable_metrics = (
             "logical_qubits",
@@ -1105,8 +1202,12 @@ def verify_nct_repository_record(record: dict[str, Any]) -> dict[str, Any]:
                     f"candidate worsens direct predecessor {name}: "
                     f"{expected_resources[name]} > {direct_resources[name]}"
                 )
-        if expected_resources["toffoli_count"] >= direct_resources["toffoli_count"]:
-            raise VerificationError("candidate does not strictly improve direct predecessor Toffoli count")
+        for name in repository_config.get("strict_direct_improvement_metrics", ()):
+            if expected_resources[name] >= direct_resources[name]:
+                raise VerificationError(
+                    f"candidate does not strictly improve direct predecessor {name}: "
+                    f"{expected_resources[name]} >= {direct_resources[name]}"
+                )
 
     return {
         "id": record.get("id"),
@@ -1141,11 +1242,28 @@ def verify_nct_derived_record(record: dict[str, Any]) -> dict[str, Any]:
         14,
         "replacement preparation count",
     )
-    require_equal(
-        construction.get("source_middle_preserved_verbatim"),
-        True,
-        "source middle preservation declaration",
-    )
+    if record.get("id") == "ascon_sbox_repository_toffoli_depth1_44cnot_depth19":
+        require_equal(
+            construction.get("source_middle_preserved_verbatim"),
+            False,
+            "source middle preservation declaration",
+        )
+        require_equal(
+            construction.get("predecessor_middle_cnot_count"),
+            19,
+            "predecessor middle count",
+        )
+        require_equal(
+            construction.get("replacement_middle_cnot_count"),
+            16,
+            "replacement middle count",
+        )
+    else:
+        require_equal(
+            construction.get("source_middle_preserved_verbatim"),
+            True,
+            "source middle preservation declaration",
+        )
 
     gates, gate_layers = parse_nct_ir_layers(record.get("layers"), config["width"])
     layer_depth, layer_toffoli_depth = verify_nct_layers(gates, gate_layers)
@@ -1178,16 +1296,22 @@ def verify_nct_derived_record(record: dict[str, Any]) -> dict[str, Any]:
     }
     require_equal(record.get("resources"), expected_resources, "derived NCT resource vector")
 
+    if record.get("id") == "ascon_sbox_repository_toffoli_depth1_44cnot_depth19":
+        cnot_bound = 46
+        depth_bound = 19
+    else:
+        cnot_bound = 94
+        depth_bound = 56
     expected_acceptance = {
         "logical_qubits": 15,
         "clean_ancillas": 5,
         "zero_initialized_output_qubits": 5,
         "dirty_ancillas": 0,
         "x_count_at_most": 1,
-        "cnot_count_at_most": 94,
+        "cnot_count_at_most": cnot_bound,
         "toffoli_count_exactly": 5,
         "toffoli_depth_at_most": 1,
-        "total_logical_depth_at_most": 56,
+        "total_logical_depth_at_most": depth_bound,
         "measurements_exactly": 0,
     }
     require_equal(record.get("acceptance_bounds"), expected_acceptance, "acceptance bounds")
