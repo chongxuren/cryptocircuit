@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -32,6 +33,17 @@ FORBIDDEN_WORKSPACE_PREFIXES = (
 )
 LOCAL_ABSOLUTE_MARKERS = ("/Users/", "/home/", "/tmp/", "/private/tmp/")
 NON_FILE_PATH_KEYS = {"dependency_critical_path"}
+
+README_TABLE_SPECS = {
+    "## Paper Table 2: Classical circuit results": (
+        19,
+        "11f01e3134943e9663acf32e79d4c6280098c07e6ee60ebb97f002bc85e42f58",
+    ),
+    "## Paper Table 3: Logical quantum and reversible results": (
+        10,
+        "e216d7f622f5c8d93155c31bc3eed9a818cefa733a24016558d7b9980fc834f9",
+    ),
+}
 
 
 def classical_result(name: str) -> str:
@@ -196,18 +208,66 @@ def audit_self_contained_json() -> None:
     print(f"PASS self-contained JSON: records={len(records)} local_file_references={len(local_paths)}")
 
 
+def visible_markdown_cell(cell: str) -> str:
+    cell = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", cell)
+    cell = cell.replace("`", "").replace("**", "")
+    return " ".join(cell.split())
+
+
+def paper_table_digest(readme: str, heading: str) -> tuple[int, str]:
+    section_start = readme.find(heading)
+    if section_start < 0:
+        raise RuntimeError(f"README is missing paper-table heading: {heading}")
+    section = readme[section_start + len(heading) :]
+    next_heading = section.find("\n## ")
+    if next_heading >= 0:
+        section = section[:next_heading]
+    table_lines = [line for line in section.splitlines() if line.startswith("|")]
+    if len(table_lines) < 2:
+        raise RuntimeError(f"README has no Markdown table below: {heading}")
+    if not re.fullmatch(r"\|(?:\s*:?-+:?\s*\|){5}", table_lines[1]):
+        raise RuntimeError(f"README has a malformed five-column separator below: {heading}")
+
+    normalized_rows = []
+    for line in [table_lines[0], *table_lines[2:]]:
+        cells = [visible_markdown_cell(cell) for cell in line.strip("|").split("|")]
+        if len(cells) != 5:
+            raise RuntimeError(
+                f"README paper-table row has {len(cells)} columns instead of 5: {line}"
+            )
+        normalized_rows.append("\t".join(cells))
+    if normalized_rows[0] != "Component\tTarget\tModel\tPrior\tNew":
+        raise RuntimeError(f"README paper-table columns changed below: {heading}")
+    payload = "\n".join(normalized_rows).encode("utf-8")
+    return len(normalized_rows) - 1, hashlib.sha256(payload).hexdigest()
+
+
 def audit_readme_alignment() -> None:
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     required_literals = {
         "Tables 2 and 3",
         "8b5f72a20feecb9c59e8c32389f75829d215d35b780ecdbb41288180c3c7621a",
-        "[13 XORs, depth 17](ir/baselines/classical/ascon_inverse_sbox_6and_13xor_depth17.json)",
-        "[12 XORs, depth 19](ir/results/classical/ascon_inverse_sbox_6and_12xor_depth19.json)",
-        "[42 CNOTs, full depth 19](ir/results/quantum/ascon_sbox_repository_toffoli_depth1_42cnot_depth19.json)",
-        "480-960 CNOTs at depth at most 4",
-        "proof-only AES MixColumns",
+        "column-for-column",
+        "PICCOLO and SM4 rows",
+        "proof-only AES MixColumns retained-copy row",
     }
     missing_literals = sorted(text for text in required_literals if text not in readme)
+
+    table_failures = []
+    paper_row_count = 0
+    for heading, (expected_rows, expected_digest) in README_TABLE_SPECS.items():
+        actual_rows, actual_digest = paper_table_digest(readme, heading)
+        paper_row_count += actual_rows
+        if actual_rows != expected_rows or actual_digest != expected_digest:
+            table_failures.append(
+                {
+                    "heading": heading,
+                    "expected_rows": expected_rows,
+                    "actual_rows": actual_rows,
+                    "expected_digest": expected_digest,
+                    "actual_digest": actual_digest,
+                }
+            )
 
     comparison_paths = {comparison[2] for comparison in TABLE_COMPARISONS}
     for comparison in CHECKPOINT_COMPARISONS:
@@ -232,15 +292,16 @@ def audit_readme_alignment() -> None:
     if expected_summary not in readme:
         missing_literals.append(expected_summary)
 
-    if missing_literals or missing_paths or broken_links:
+    if missing_literals or table_failures or missing_paths or broken_links:
         raise RuntimeError(
             "README alignment mismatch: "
-            f"missing_literals={missing_literals}, missing_paths={missing_paths}, "
-            f"broken_links={broken_links}"
+            f"missing_literals={missing_literals}, table_failures={table_failures}, "
+            f"missing_paths={missing_paths}, broken_links={broken_links}"
         )
     print(
         "PASS README alignment: "
-        f"comparison_paths={len(comparison_paths)} local_links={len(markdown_targets)}"
+        f"paper_rows={paper_row_count} comparison_paths={len(comparison_paths)} "
+        f"local_links={len(markdown_targets)}"
     )
 
 
