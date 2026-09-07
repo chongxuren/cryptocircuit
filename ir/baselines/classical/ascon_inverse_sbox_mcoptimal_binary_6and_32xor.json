@@ -7,12 +7,12 @@
       12,
       13
     ],
+    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13; paper-linked file [excluded-research-artifact]",
     "artifact": {
       "repository": "https://github.com/lemontrr/MCoptimal",
       "commit": "303c00e21158e0b833593239a791f5f4f48ad048",
       "sha256": "a46e2b2301bef930a43a8bcf43641ecae2c05b068ff2b79ff808cf2e660c114e"
-    },
-    "locator": "Tables II-III and the paper's MCoptimal artifact link, PDF pp.12-13; paper-linked file"
+    }
   },
   "interface": {
     "inputs": [
@@ -96,7 +96,8 @@
     ]
   },
   "derivation": {
-    "method": "mechanical left-associative lowering of every affine expression in the pinned MCoptimal artifact to binary XOR2; constants use free logical complement"
+    "method": "mechanical left-associative lowering of every affine expression in the pinned MCoptimal artifact to binary XOR2; constants use free logical complement",
+    "source_ir": "[excluded-research-artifact]"
   },
   "program": [
     "a0 = and x0 x4",

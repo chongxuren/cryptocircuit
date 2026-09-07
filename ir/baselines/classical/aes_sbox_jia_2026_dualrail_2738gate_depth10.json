@@ -59,6 +59,7 @@
   },
   "construction": {
     "evidence_class": "source-derived exact dual-rail lowering",
+    "builder": "[excluded-research-artifact]",
     "builder_sha256": "0bf6c677df37ffa100aed45d631712956cf868c2ac9c79d0b583ca97b0a89724",
     "deterministic": true,
     "source_artifact_measured": {

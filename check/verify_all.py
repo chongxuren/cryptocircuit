@@ -30,6 +30,7 @@ FORBIDDEN_WORKSPACE_PREFIXES = (
     "our_results/",
 )
 LOCAL_ABSOLUTE_MARKERS = ("/Users/", "/home/", "/tmp/", "/private/tmp/")
+NON_FILE_PATH_KEYS = {"dependency_critical_path"}
 
 
 def classical_result(name: str) -> str:
@@ -49,27 +50,71 @@ def quantum_baseline(name: str) -> str:
 
 
 # label, kind, result, baseline, strictly smaller metrics, unchanged hard bounds
-PAIRS = [
+TABLE_COMPARISONS = [
     ("AES S-box Tay shell", "classical", classical_result("aes_sbox_equiv_g19_t3_109gate"), classical_baseline("aes_sbox_tay_112gate"), ("total",), ("nonlinear", "nonlinear_depth")),
-    ("AES S-box Feng basis", "classical", classical_result("aes_sbox_feng_equiv_g53_t6_85gate"), classical_baseline("aes_sbox_feng_93gate"), ("total",), ("nonlinear", "nonlinear_depth")),
-    ("AES combined S-box", "classical", classical_result("aes_combined_sbox_mixed_odc_window_126gate"), classical_baseline("aes_combined_sbox_maximov_127gate"), ("total", "nonlinear"), ("linear", "depth", "nonlinear_depth")),
-    ("AES S-box depth 14", "classical", classical_result("aes_sbox_slice_depth14_127gate"), classical_baseline("aes_sbox_slice_depth14"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("AES S-box Maximov shell", "classical", classical_result("aes_sbox_maximov_equiv_g05_t2_101gate"), classical_baseline("aes_sbox_maximov_102gate"), ("total",), ("nonlinear", "nonlinear_depth")),
+    ("AES S-box Feng basis", "classical", classical_result("aes_sbox_feng_equiv_g53_t6_84gate"), classical_baseline("aes_sbox_feng_93gate"), ("total",), ("nonlinear", "nonlinear_depth")),
+    ("AES combined S-box", "classical", classical_result("aes_combined_sbox_context_quotient_125gate"), classical_baseline("aes_combined_sbox_mixed_odc_window_126gate"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("AES S-box depth 14", "classical", classical_result("aes_sbox_slice_depth14_126gate"), classical_baseline("aes_sbox_slice_depth14"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("AES S-box depth 13", "classical", classical_result("aes_sbox_slice_depth13_135gate"), classical_baseline("aes_sbox_slice_depth13"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
     ("AES S-box depth 12", "classical", classical_result("aes_sbox_slice_depth12_148gate"), classical_baseline("aes_sbox_slice_depth12"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("AES S-box depth 11 tradeoff", "classical", classical_result("aes_sbox_slice_global_depth11_173gate"), classical_baseline("aes_sbox_slice_depth12"), ("depth",), ("nonlinear_depth",)),
     ("AES S-box depth 10", "classical", classical_result("aes_sbox_slice_bilinear_depth10_216gate"), classical_baseline("aes_sbox_jia_2026_dualrail_2738gate_depth10"), ("total", "linear", "nonlinear"), ("depth", "nonlinear_depth")),
     ("AES MixColumns binary depth 3", "classical", classical_result("aes_mixcolumns_97xor_depth3"), classical_baseline("aes_mixcolumns_shi_99xor_depth3"), ("total", "linear"), ("depth", "nonlinear_depth")),
     ("AES MixColumns mixed depth 3", "classical", classical_result("aes_mixcolumns_42xor_mixed_fanin_depth3"), classical_baseline("aes_mixcolumns_44xor_mixed_fanin_depth3"), ("total", "linear"), ("depth", "nonlinear_depth")),
+    ("AES MixColumns selector", "classical", classical_result("aes_selector_mixcolumns_rank16_161gate"), classical_baseline("aes_selector_mixcolumns_rank16_166gate"), ("total", "linear"), ("nonlinear", "and2", "depth", "nonlinear_depth")),
     ("Ascon inverse S-box", "classical", classical_result("ascon_inverse_sbox_6and_13xor_depth17"), classical_baseline("ascon_inverse_sbox_mcoptimal_binary_6and_32xor"), ("total", "linear"), ("nonlinear", "nonlinear_depth")),
     ("Ascon inverse diffusion Sigma0", "classical", classical_result("ascon_sigma0_inverse_8word_512xor"), classical_baseline("ascon_sigma0_inverse_tezcan_balanced_1920xor"), ("total", "linear"), ("nonlinear", "nonlinear_depth")),
     ("Ascon inverse diffusion Sigma1", "classical", classical_result("ascon_sigma1_inverse_8word_512xor"), classical_baseline("ascon_sigma1_inverse_tezcan_balanced_2048xor"), ("total", "linear"), ("nonlinear", "nonlinear_depth")),
     ("Ascon inverse diffusion Sigma2", "classical", classical_result("ascon_sigma2_inverse_8word_512xor"), classical_baseline("ascon_sigma2_inverse_tezcan_balanced_2048xor"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
     ("Ascon inverse diffusion Sigma3", "classical", classical_result("ascon_sigma3_inverse_8word_512xor"), classical_baseline("ascon_sigma3_inverse_tezcan_balanced_2048xor"), ("total", "linear"), ("nonlinear", "nonlinear_depth")),
     ("Ascon inverse diffusion Sigma4", "classical", classical_result("ascon_sigma4_inverse_8word_512xor"), classical_baseline("ascon_sigma4_inverse_tezcan_balanced_2176xor"), ("total", "linear"), ("nonlinear", "nonlinear_depth")),
-    ("Ascon Toffoli-depth-one isometry", "quantum", quantum_result("ascon_sbox_repository_toffoli_depth1_44cnot_depth19"), quantum_baseline("ascon_sbox_huang_zhang_lin_toffoli_depth1_nct"), ("total_gate_count", "cnot_count", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth")),
+    ("Ascon Toffoli-depth-one isometry", "quantum", quantum_result("ascon_sbox_repository_toffoli_depth1_43cnot_depth19"), quantum_baseline("ascon_sbox_huang_zhang_lin_toffoli_depth1_nct"), ("total_gate_count", "cnot_count", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth")),
+    ("Specialized Ascon S-box", "quantum", quantum_result("ascon_sbox_round_constant_x2_specialized_16gate_nct"), quantum_baseline("ascon_sbox_round_constant_x2_specialized_17gate_nct"), ("total_gate_count", "x_count"), ("logical_qubits", "cnot_count", "toffoli_count", "toffoli_depth", "total_logical_depth")),
+    ("Ascon linear layer 1525/45", "quantum", quantum_result("ascon_linear_local_rewrite_inplace_1525cnot_depth45"), quantum_baseline("ascon_linear_commutation_rescheduled_inplace_1595cnot_depth45"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas", "cnot_depth", "total_logical_depth")),
+    ("Ascon linear layer 1502/46 Pareto", "quantum", quantum_result("ascon_linear_local_rewrite_inplace_1502cnot_depth46"), quantum_baseline("ascon_linear_commutation_rescheduled_inplace_1595cnot_depth45"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas")),
+    ("Ascon round core 2549/56", "quantum", quantum_result("ascon_round_core_guo_linear_rewrite_2549gate_depth56"), quantum_baseline("ascon_round_core_guo_xzlbz_2619gate_depth56"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth", "total_logical_depth")),
+    ("Ascon round core 2526/57 Pareto", "quantum", quantum_result("ascon_round_core_guo_linear_rewrite_2526gate_depth57"), quantum_baseline("ascon_round_core_guo_xzlbz_2619gate_depth56"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth")),
     ("AES width-nine S-box isometry", "quantum", quantum_result("aes_sbox_repository_width9_829toffoli"), quantum_baseline("aes_sbox_huang_zhang_lin_width9_nct"), ("total_gate_count", "cnot_count", "toffoli_count", "toffoli_depth", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count")),
-    ("AES output suffix count point", "quantum", quantum_result("aes_sbox_output_suffix_repository_53cnot_depth11"), quantum_baseline("aes_sbox_jiang_output_suffix_direct_68cnot_depth12"), ("total_gate_count", "x_count", "cnot_count", "cnot_depth", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas")),
+    ("AES output suffix count point", "quantum", quantum_result("aes_sbox_output_suffix_repository_51cnot_depth11"), quantum_baseline("aes_sbox_jiang_output_suffix_direct_68cnot_depth12"), ("total_gate_count", "x_count", "cnot_count", "cnot_depth", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas")),
     ("AES output suffix depth point", "quantum", quantum_result("aes_sbox_output_suffix_repository_53cnot_cnotdepth10_fdepth11"), quantum_baseline("aes_sbox_jiang_output_suffix_direct_68cnot_depth12"), ("total_gate_count", "cnot_count", "cnot_depth", "total_logical_depth"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count")),
+    ("Keyed AES column", "quantum", quantum_result("aes_keyed_subbytes_mixcolumns_column_3668cnot"), quantum_baseline("aes_keyed_subbytes_mixcolumns_column_3669cnot"), ("total_gate_count", "cnot_count"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth", "total_logical_depth")),
 ]
 
+CHECKPOINT_COMPARISONS = [
+    ("AES Feng direct checkpoint", "classical", classical_result("aes_sbox_feng_equiv_g53_t6_84gate"), classical_baseline("aes_sbox_feng_equiv_g53_t6_85gate"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("AES depth-14 direct checkpoint", "classical", classical_result("aes_sbox_slice_depth14_126gate"), classical_baseline("aes_sbox_slice_depth14_127gate"), ("total", "linear"), ("nonlinear", "depth", "nonlinear_depth")),
+    ("Ascon isometry direct checkpoint", "quantum", quantum_result("ascon_sbox_repository_toffoli_depth1_43cnot_depth19"), quantum_baseline("ascon_sbox_repository_toffoli_depth1_44cnot_depth19"), ("total_gate_count", "cnot_count"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth", "total_logical_depth")),
+    ("Ascon linear Pareto direct checkpoint", "quantum", quantum_result("ascon_linear_local_rewrite_inplace_1502cnot_depth46"), quantum_result("ascon_linear_local_rewrite_inplace_1525cnot_depth45"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas")),
+    ("Ascon round-core direct checkpoint", "quantum", quantum_result("ascon_round_core_guo_linear_rewrite_2549gate_depth56"), quantum_baseline("ascon_round_core_guo_linear_rewrite_2550gate_depth56"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth", "total_logical_depth")),
+    ("Ascon round-core Pareto direct checkpoint", "quantum", quantum_result("ascon_round_core_guo_linear_rewrite_2526gate_depth57"), quantum_result("ascon_round_core_guo_linear_rewrite_2549gate_depth56"), ("total_gate_count", "cnot_count"), ("logical_qubits", "dirty_ancillas", "x_count", "toffoli_count", "toffoli_depth")),
+    ("AES suffix direct checkpoint", "quantum", quantum_result("aes_sbox_output_suffix_repository_51cnot_depth11"), quantum_baseline("aes_sbox_output_suffix_repository_52cnot_depth11"), ("total_gate_count", "cnot_count"), ("logical_qubits", "clean_ancillas", "dirty_ancillas", "x_count", "cnot_depth", "total_logical_depth")),
+]
+
+EXTRA_RECORDS = {
+    classical_baseline("aes_combined_sbox_maximov_127gate"),
+    quantum_baseline("aes_mixcolumns_repository_105cnot_depth10"),
+    quantum_baseline("aes_sbox_output_suffix_repository_53cnot_depth11"),
+    quantum_baseline("ascon_linear_local_rewrite_inplace_1526cnot_depth45"),
+    quantum_baseline("ascon_sbox_guo_et_al_width5_16gate_nct"),
+    quantum_baseline("ascon_sbox_huang_zhang_lin_width5_nct"),
+    quantum_baseline("ascon_linear_oh_et_al_copy_960cnot_depth3"),
+}
+
+QASM_FILES = {
+    "ir/baselines/quantum/aes_keyed_subbytes_mixcolumns_column_3669cnot.qasm",
+    "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_layers.qasm",
+    "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_raw.qasm",
+    "ir/baselines/quantum/ascon_sbox_guo_et_al_width5_16gate_nct.qasm",
+    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_layers.qasm",
+    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_raw.qasm",
+    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_layers.qasm",
+    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_raw.qasm",
+    "ir/baselines/quantum/ascon_sbox_round_constant_x2_specialized_17gate_nct.qasm",
+    "ir/results/quantum/aes_keyed_subbytes_mixcolumns_column_3668cnot.qasm",
+    "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
+    "ir/results/quantum/ascon_sbox_round_constant_x2_specialized_16gate_nct.qasm",
+}
 
 SUPPORT_FILES = {
     "AGENTS.md",
@@ -77,22 +122,16 @@ SUPPORT_FILES = {
     "check/verify_all.py",
     "check/verify_classical.py",
     "check/verify_quantum.py",
-    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_raw.qasm",
-    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_layers.qasm",
-    "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_raw.qasm",
-    "ir/baselines/quantum/aes_sbox_huang_zhang_lin_width9_layers.qasm",
-    "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
-    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_nct.json",
-    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_raw.qasm",
-    "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_width5_layers.qasm",
+    *EXTRA_RECORDS,
+    *QASM_FILES,
 }
 
 
 def expected_files() -> set[str]:
     files = set(SUPPORT_FILES)
-    for _, _, result, baseline, _, _ in PAIRS:
-        files.add(result)
-        files.add(baseline)
+    for comparison in [*TABLE_COMPARISONS, *CHECKPOINT_COMPARISONS]:
+        files.add(comparison[2])
+        files.add(comparison[3])
     return files
 
 
@@ -114,12 +153,7 @@ def audit_inventory() -> None:
     print(f"PASS inventory: {len(actual)} permitted files")
 
 
-def audit_json_value(
-    value: Any,
-    record_relative: str,
-    trail: tuple[str, ...],
-    local_paths: set[str],
-) -> None:
+def audit_json_value(value: Any, record_relative: str, trail: tuple[str, ...], local_paths: set[str]) -> None:
     if isinstance(value, dict):
         for key, child in value.items():
             child_trail = (*trail, key)
@@ -128,13 +162,13 @@ def audit_json_value(
                 raise RuntimeError(f"forbidden out-of-repository key at {location}")
             if isinstance(child, str):
                 normalized = child.replace("\\", "/")
-                if "://" not in normalized and any(
-                    prefix in normalized for prefix in FORBIDDEN_WORKSPACE_PREFIXES
-                ):
+                if "://" not in normalized and any(prefix in normalized for prefix in FORBIDDEN_WORKSPACE_PREFIXES):
                     raise RuntimeError(f"research-workspace path at {location}: {child}")
                 if any(marker in normalized for marker in LOCAL_ABSOLUTE_MARKERS):
                     raise RuntimeError(f"absolute local path at {location}: {child}")
-            if key == "path" or key.endswith("_path"):
+            if key == "path" or (
+                key.endswith("_path") and key not in NON_FILE_PATH_KEYS
+            ):
                 if not isinstance(child, str) or not child:
                     raise RuntimeError(f"file-valued key must be a nonempty string at {location}")
                 relative = Path(child)
@@ -155,21 +189,13 @@ def audit_self_contained_json() -> None:
     local_paths: set[str] = set()
     for path in records:
         relative = path.relative_to(ROOT).as_posix()
-        record = json.loads(path.read_text(encoding="utf-8"))
-        audit_json_value(record, relative, (), local_paths)
-    print(
-        f"PASS self-contained JSON: records={len(records)} "
-        f"local_file_references={len(local_paths)}"
-    )
+        audit_json_value(json.loads(path.read_text(encoding="utf-8")), relative, (), local_paths)
+    print(f"PASS self-contained JSON: records={len(records)} local_file_references={len(local_paths)}")
 
 
 def classical_metrics(report: dict[str, Any]) -> dict[str, int]:
     measured = report["metrics"]
-    return {
-        **measured["counts"],
-        "depth": measured["depth"],
-        "nonlinear_depth": measured["nonlinear_depth"],
-    }
+    return {**measured["counts"], "depth": measured["depth"], "nonlinear_depth": measured["nonlinear_depth"]}
 
 
 def quantum_metrics(path: Path) -> dict[str, Any]:
@@ -180,68 +206,56 @@ def quantum_metrics(path: Path) -> dict[str, Any]:
     return resources
 
 
-def compare_pair(
-    label: str,
-    result: dict[str, Any],
-    baseline: dict[str, Any],
-    strict: tuple[str, ...],
-    equal: tuple[str, ...],
-) -> None:
+def compare_pair(label: str, result: dict[str, Any], baseline: dict[str, Any], strict: tuple[str, ...], equal: tuple[str, ...]) -> None:
     for metric in strict:
-        if metric not in result or metric not in baseline:
-            raise RuntimeError(f"{label}: missing comparison metric {metric}")
-        if not result[metric] < baseline[metric]:
-            raise RuntimeError(
-                f"{label}: {metric} is not improved: {result[metric]} >= {baseline[metric]}"
-            )
+        if metric not in result or metric not in baseline or not result[metric] < baseline[metric]:
+            raise RuntimeError(f"{label}: {metric} is not strictly improved")
     for metric in equal:
-        if metric not in result or metric not in baseline:
-            raise RuntimeError(f"{label}: missing hard-bound metric {metric}")
-        if result[metric] != baseline[metric]:
-            raise RuntimeError(
-                f"{label}: hard-bound metric {metric} changed: "
-                f"{result[metric]} != {baseline[metric]}"
-            )
+        if metric not in result or metric not in baseline or result[metric] != baseline[metric]:
+            raise RuntimeError(f"{label}: hard-bound metric {metric} changed")
+
+
+def run_comparison(comparison: tuple[Any, ...], classical_cache: dict[str, dict[str, Any]], quantum_cache: dict[str, dict[str, Any]], kind_label: str) -> None:
+    label, kind, result_relative, baseline_relative, strict, equal = comparison
+    result_metrics = classical_cache[result_relative] if kind == "classical" else quantum_cache[result_relative]
+    baseline_metrics = classical_cache[baseline_relative] if kind == "classical" else quantum_cache[baseline_relative]
+    compare_pair(label, result_metrics, baseline_metrics, strict, equal)
+    improvements = ", ".join(f"{metric} {baseline_metrics[metric]}->{result_metrics[metric]}" for metric in strict)
+    print(f"PASS {kind_label}: {label}: {improvements}")
 
 
 def main() -> int:
     try:
         audit_inventory()
         audit_self_contained_json()
-        classical_cache: dict[str, dict[str, Any]] = {}
+
+        classical_cache = {
+            path.relative_to(ROOT).as_posix(): classical_metrics(verify_classical.verify_record(path))
+            for path in sorted(ROOT.glob("ir/*/classical/*.json"))
+        }
         quantum_cache: dict[str, dict[str, Any]] = {}
+        for path in sorted(ROOT.glob("ir/*/quantum/*.json")):
+            verify_quantum.verify_record(path)
+            quantum_cache[path.relative_to(ROOT).as_posix()] = quantum_metrics(path)
 
-        for label, kind, result_relative, baseline_relative, strict, equal in PAIRS:
-            result_path = ROOT / result_relative
-            baseline_path = ROOT / baseline_relative
-            if kind == "classical":
-                for relative, path in ((result_relative, result_path), (baseline_relative, baseline_path)):
-                    if relative not in classical_cache:
-                        classical_cache[relative] = classical_metrics(verify_classical.verify_record(path))
-                result_metrics = classical_cache[result_relative]
-                baseline_metrics = classical_cache[baseline_relative]
-            else:
-                for relative, path in ((result_relative, result_path), (baseline_relative, baseline_path)):
-                    if relative not in quantum_cache:
-                        verify_quantum.verify_record(path)
-                        quantum_cache[relative] = quantum_metrics(path)
-                result_metrics = quantum_cache[result_relative]
-                baseline_metrics = quantum_cache[baseline_relative]
+        for comparison in TABLE_COMPARISONS:
+            run_comparison(comparison, classical_cache, quantum_cache, "table comparison")
+        for comparison in CHECKPOINT_COMPARISONS:
+            run_comparison(comparison, classical_cache, quantum_cache, "checkpoint comparison")
 
-            compare_pair(label, result_metrics, baseline_metrics, strict, equal)
-            improvements = ", ".join(
-                f"{metric} {baseline_metrics[metric]}->{result_metrics[metric]}"
-                for metric in strict
-            )
-            print(f"PASS pair: {label}: {improvements}")
-
-        witness = ROOT / quantum_baseline("ascon_sbox_huang_zhang_lin_width5_nct")
-        verify_quantum.verify_record(witness)
-        print("PASS supporting quantum IR: published Ascon seven-Toffoli witness")
+        seven = quantum_cache[quantum_baseline("ascon_sbox_huang_zhang_lin_width5_nct")]
+        if seven["toffoli_count"] != 7:
+            raise RuntimeError("Ascon width-five witness is not seven Toffolis")
+        retained = quantum_cache[quantum_baseline("ascon_linear_oh_et_al_copy_960cnot_depth3")]
+        if retained["cnot_count"] != 960 or retained["cnot_depth"] != 3:
+            raise RuntimeError("Ascon retained-copy witness is not 960 CNOTs at depth 3")
+        print("PASS supporting theorem IR: Ascon seven-Toffoli and retained-copy 960-CNOT witnesses")
 
         print(
-            f"PASS all: pairs={len(PAIRS)} classical_records={len(classical_cache)} "
-            f"quantum_pair_records={len(quantum_cache)} supporting_quantum_records=1"
+            f"PASS all: table_comparisons={len(TABLE_COMPARISONS)} "
+            f"checkpoint_comparisons={len(CHECKPOINT_COMPARISONS)} "
+            f"classical_records={len(classical_cache)} quantum_records={len(quantum_cache)} "
+            "supporting_theorem_records=2"
         )
         return 0
     except (

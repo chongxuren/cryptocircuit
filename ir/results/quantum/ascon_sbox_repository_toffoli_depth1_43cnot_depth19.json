@@ -1,0 +1,558 @@
+{
+  "acceptance_bounds": {
+    "clean_ancillas": 5,
+    "cnot_count_at_most": 43,
+    "dirty_ancillas": 0,
+    "logical_qubits": 15,
+    "measurements_exactly": 0,
+    "toffoli_count_exactly": 5,
+    "toffoli_depth_at_most": 1,
+    "total_gate_count_at_most": 49,
+    "total_logical_depth_at_most": 19,
+    "x_count_at_most": 1,
+    "zero_initialized_output_qubits": 5
+  },
+  "boundary": {
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "basis_semantics": "forward Ascon S-box on computational-basis states",
+    "clean_workspace_final_state": "zero",
+    "clean_workspace_initial_state": "zero",
+    "clean_workspace_wires": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "input_bit_order": "msb0",
+    "input_coordinate_order": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "input_coordinate_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "operation": "isometry",
+    "output_bit_order": "msb0",
+    "output_coordinate_order": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ],
+    "output_coordinate_wires": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "preserved_input_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "terminal_permutation": "explicit_nonidentity",
+    "zero_initialized_output_wires": [
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "comparison": {
+    "cnot_reduction": 1,
+    "logical_depth_reduction": 0,
+    "optimality_claim": null,
+    "predecessor": "ascon_sbox_repository_toffoli_depth1_44cnot_depth19",
+    "predecessor_record_path": "ir/baselines/quantum/ascon_sbox_repository_toffoli_depth1_44cnot_depth19.json",
+    "predecessor_resource_vector": {
+      "cnot_count": 44,
+      "logical_qubits": 15,
+      "toffoli_count": 5,
+      "toffoli_depth": 1,
+      "total_gate_count": 50,
+      "total_logical_depth": 19,
+      "x_count": 1
+    },
+    "total_gate_reduction": 1,
+    "unchanged_hard_bounds": [
+      "logical_qubits",
+      "clean_ancillas",
+      "dirty_ancillas",
+      "zero_initialized_output_qubits",
+      "x_count",
+      "toffoli_count",
+      "toffoli_depth",
+      "total_logical_depth",
+      "measurements",
+      "classical_feed_forward"
+    ]
+  },
+  "construction": {
+    "direct_linear_injection_cnot_count": 6,
+    "linear_injection_cnot_count": 7,
+    "method": "pre-transform shared-linear injection resynthesis",
+    "predecessor_middle_cnot_count": 16,
+    "prepared_linear_rows": [
+      [
+        "x0",
+        "x4"
+      ],
+      [
+        "x0",
+        "x1",
+        "x3"
+      ],
+      [
+        "x1",
+        "x2",
+        "x3",
+        "x4"
+      ],
+      [
+        "x3",
+        "x4"
+      ],
+      [
+        "x1",
+        "x2",
+        "x4"
+      ],
+      [
+        "x0",
+        "x4"
+      ],
+      [
+        "x0"
+      ],
+      [
+        "x2"
+      ],
+      [
+        "x1",
+        "x2"
+      ],
+      [
+        "x0",
+        "x3",
+        "x4"
+      ]
+    ],
+    "quadratic_output_cnot_count": 8,
+    "replacement_middle_cnot_count": 15,
+    "replacement_preparation_cnot_count": 14,
+    "schedule": "ASAP schedule under ordered incident-wire dependencies with the five Toffoli gates synchronized in one layer",
+    "shared_linear_final_output_wires": [
+      11,
+      12,
+      13
+    ],
+    "shared_linear_injection_cnot_count": 1,
+    "shared_linear_source_wire": 2,
+    "shared_linear_target_wire": 13,
+    "source_middle_preserved_verbatim": false,
+    "source_preparation_cnot_count": 38,
+    "target_cut_basis_rows": [
+      634,
+      956,
+      1319,
+      286,
+      107
+    ],
+    "toffoli_layer_preserved_verbatim": true,
+    "uncomputation": "exact reverse of the 14-CNOT preparation"
+  },
+  "id": "ascon_sbox_repository_toffoli_depth1_43cnot_depth19",
+  "layers": [
+    [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 6
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 7
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 8
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 9
+      }
+    ],
+    [
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 8
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 0
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 1
+      }
+    ],
+    [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 5
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 1
+      }
+    ],
+    [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 9
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 2
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 3
+      }
+    ],
+    [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 2
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 4
+      }
+    ],
+    [
+      {
+        "controls": [
+          0,
+          3
+        ],
+        "gate": "Toffoli",
+        "target": 10
+      },
+      {
+        "controls": [
+          1,
+          5
+        ],
+        "gate": "Toffoli",
+        "target": 11
+      },
+      {
+        "controls": [
+          2,
+          4
+        ],
+        "gate": "Toffoli",
+        "target": 12
+      },
+      {
+        "controls": [
+          9,
+          6
+        ],
+        "gate": "Toffoli",
+        "target": 13
+      },
+      {
+        "controls": [
+          8,
+          7
+        ],
+        "gate": "Toffoli",
+        "target": 14
+      }
+    ],
+    [
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 13
+      },
+      {
+        "control": 11,
+        "gate": "CNOT",
+        "target": 10
+      }
+    ],
+    [
+      {
+        "control": 14,
+        "gate": "CNOT",
+        "target": 10
+      },
+      {
+        "control": 13,
+        "gate": "CNOT",
+        "target": 11
+      }
+    ],
+    [
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 14
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 11
+      }
+    ],
+    [
+      {
+        "control": 14,
+        "gate": "CNOT",
+        "target": 12
+      }
+    ],
+    [
+      {
+        "control": 11,
+        "gate": "CNOT",
+        "target": 12
+      }
+    ],
+    [
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 11
+      },
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 12
+      }
+    ],
+    [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 10
+      },
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 11
+      },
+      {
+        "gate": "X",
+        "target": 12
+      }
+    ],
+    [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 10
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 11
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 2
+      }
+    ],
+    [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 14
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 4
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 9
+      }
+    ],
+    [
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 3
+      },
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 2
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 5
+      }
+    ],
+    [
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 1
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 0
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 8
+      }
+    ],
+    [
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 1
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 9
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 7
+      }
+    ],
+    [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 8
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 6
+      }
+    ]
+  ],
+  "model": {
+    "classical_feed_forward": false,
+    "clean_ancillas": 5,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "connectivity": "all_to_all",
+    "dirty_ancillas": 0,
+    "fault_tolerance_model": null,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "input_qubits": 5,
+    "logical_qubits": 15,
+    "measurements": 0,
+    "noise_model": null,
+    "output_qubits": 5,
+    "physical_qubits": null,
+    "zero_initialized_output_qubits": 5
+  },
+  "provenance": {
+    "evidence_locator": "Huang--Zhang--Lin official five-Toffoli cut; repository 14-CNOT initialized-subspace preparation from the retained predecessor; one pre-transform shared-linear injection, the exact eight-CNOT quadratic output transform, six direct linear injections, and exact reverse uncomputation",
+    "evidence_status": "repository-derived-verified",
+    "files": [
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_raw.qasm",
+        "sha256": "df9508f4ac2e3103029b56e0278312390cf4e15a9a0baa0a8826d8c526a38fe6"
+      },
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_huang_zhang_lin_toffoli_depth1_nct.json",
+        "sha256": "7b0a071cadf0f06f5cc84f76427f7cc40cc089ea7d5fdf6e325aa8e5a4031f3f"
+      },
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_repository_toffoli_depth1_44cnot_depth19.json",
+        "sha256": "2e7a0e861ab9bc9dab11d0bb8b751dee367d120f5854da91a7dec251f0e231d7"
+      }
+    ],
+    "excluded_sources": [
+      {
+        "locator": "2025-212_Huang_et_al_Minimal_TDepth_Width.pdf",
+        "sha256": "f91ff520b0eed81799cb17a7ff4f8838f01d492fbb52ad345d583724ed09eb04"
+      }
+    ]
+  },
+  "resources": {
+    "classical_control_operations": 0,
+    "clean_ancillas": 5,
+    "cnot_count": 43,
+    "cnot_depth": null,
+    "dirty_ancillas": 0,
+    "logical_qubits": 15,
+    "measurement_rounds": 0,
+    "physical_qubits": null,
+    "t_count": null,
+    "t_depth": null,
+    "toffoli_count": 5,
+    "toffoli_depth": 1,
+    "topology_overhead": null,
+    "total_gate_count": 49,
+    "total_logical_depth": 19,
+    "x_count": 1,
+    "zero_initialized_output_qubits": 5
+  },
+  "schema": "quantum-nct-derived-ir/v1",
+  "target": "ascon_sbox_forward_toffoli_depth1_nct"
+}

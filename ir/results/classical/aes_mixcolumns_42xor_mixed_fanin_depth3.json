@@ -108,10 +108,12 @@
     ]
   },
   "construction": {
+    "searcher": "[excluded-research-artifact]",
     "search_source_sha256": "db987c969dc29cf7516dfac1d1191b2ce438862b15efc3764d5c282573044040",
     "search_receipt_sha256": "f3fcac1ddc1f2b1d76a4179b87b81c85c46cbf29e33c71d939a7e422db007ab0",
-    "predecessor": "ir/baselines/classical/aes_mixcolumns_44xor_mixed_fanin_depth3.json",
-    "predecessor_sha256": "2ac5379aa11a017e4b638feeece706e32bb90140244c995d3b5ecdbba6289a99",
+    "predecessor": "[excluded-research-artifact]",
+    "predecessor_sha256": "11c3bb0aebb36811c59673d3957e5cd3fb0dcb0a336851c94a72c4a3735a5f66",
+    "ts1000_job_id": 14931305,
     "seed": 202609061004,
     "iterations": 24622,
     "elapsed_seconds": 81.278299,

@@ -1,0 +1,310 @@
+{
+  "acceptance_bounds": {
+    "cnot_count_at_most": 6,
+    "dirty_ancillas": 0,
+    "garbage_qubits": 0,
+    "logical_qubits": 5,
+    "measurements_exactly": 0,
+    "source_weighted_full_depth_at_most": 53,
+    "toffoli_count_at_most": 7,
+    "toffoli_depth_at_most": 7,
+    "total_gate_count_at_most": 16,
+    "total_logical_depth_at_most": 11,
+    "x_count_at_most": 4,
+    "zero_initialized_ancillas": 0
+  },
+  "boundary": {
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "ancilla_cleanup_policy": "not_applicable",
+    "basis_semantics": "S_Ascon(x0,x1,x2 xor 1,x3,x4) on computational-basis states",
+    "cleaned_ancilla_wires": [],
+    "fixed_input_coordinate_complements": [
+      2
+    ],
+    "garbage_wires": [],
+    "input_bit_order": "msb0",
+    "input_coordinate_order": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "input_coordinate_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "operation": "unitary",
+    "output_bit_order": "msb0",
+    "output_coordinate_order": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ],
+    "output_coordinate_wires": [
+      4,
+      0,
+      3,
+      2,
+      1
+    ],
+    "preserved_input_wires": [],
+    "terminal_permutation": "explicit_nonidentity",
+    "zero_initialized_ancilla_wires": []
+  },
+  "circuit": {
+    "ordered_gates": [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 2
+      },
+      {
+        "gate": "X",
+        "target": 1
+      },
+      {
+        "gate": "X",
+        "target": 3
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 0
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 4
+      },
+      {
+        "controls": [
+          0,
+          4
+        ],
+        "gate": "Toffoli",
+        "target": 3
+      },
+      {
+        "controls": [
+          1,
+          2
+        ],
+        "gate": "Toffoli",
+        "target": 0
+      },
+      {
+        "controls": [
+          3,
+          4
+        ],
+        "gate": "Toffoli",
+        "target": 2
+      },
+      {
+        "controls": [
+          0,
+          1
+        ],
+        "gate": "Toffoli",
+        "target": 4
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 1
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 3
+      },
+      {
+        "gate": "X",
+        "target": 0
+      },
+      {
+        "controls": [
+          1,
+          4
+        ],
+        "gate": "Toffoli",
+        "target": 2
+      },
+      {
+        "controls": [
+          2,
+          3
+        ],
+        "gate": "Toffoli",
+        "target": 0
+      },
+      {
+        "controls": [
+          1,
+          4
+        ],
+        "gate": "Toffoli",
+        "target": 2
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 1
+      }
+    ],
+    "qasm_path": "ir/results/quantum/ascon_sbox_round_constant_x2_specialized_16gate_nct.qasm",
+    "schedule": "ordered ASAP dependency depth"
+  },
+  "comparison": {
+    "optimality_claim": null,
+    "predecessor": "ascon_sbox_round_constant_x2_specialized_17gate_nct",
+    "predecessor_record_path": "ir/baselines/quantum/ascon_sbox_round_constant_x2_specialized_17gate_nct.json",
+    "predecessor_resource_vector": {
+      "classical_control_operations": 0,
+      "clean_ancillas_returned_to_zero": 0,
+      "cnot_count": 6,
+      "cnot_depth": null,
+      "dirty_ancillas": 0,
+      "garbage_qubits": 0,
+      "logical_qubits": 5,
+      "measurement_rounds": 0,
+      "physical_qubits": null,
+      "source_weighted_depth_gate_costs": {
+        "CNOT": 1,
+        "Toffoli": 7,
+        "X": 1
+      },
+      "source_weighted_full_depth": 53,
+      "t_count": null,
+      "t_depth": null,
+      "toffoli_count": 7,
+      "toffoli_depth": 7,
+      "topology_overhead": null,
+      "total_gate_count": 17,
+      "total_logical_depth": 11,
+      "x_count": 4,
+      "zero_initialized_ancillas": 0
+    },
+    "total_gate_reduction": 1,
+    "unchanged_or_improved_metrics": [
+      "logical_qubits",
+      "x_count",
+      "cnot_count",
+      "toffoli_count",
+      "total_gate_count",
+      "toffoli_depth",
+      "total_logical_depth",
+      "source_weighted_full_depth",
+      "measurement_rounds"
+    ]
+  },
+  "construction": {
+    "affine_identity": "X(q2) X(q1) CNOT(q1,q2) = CNOT(q1,q2) X(q1)",
+    "commuted_across": [
+      "X(q3)",
+      "CNOT(q4,q0)"
+    ],
+    "commuted_gate": "CNOT(q1,q2)",
+    "direct_predecessor_record_path": "ir/baselines/quantum/ascon_sbox_round_constant_x2_specialized_17gate_nct.json",
+    "identity_basis_states": 32,
+    "method": "disjoint-prefix commutation plus verified affine identity"
+  },
+  "id": "ascon_sbox_round_constant_x2_specialized_16gate_nct",
+  "model": {
+    "classical_feed_forward": false,
+    "clean_ancillas_returned_to_zero": 0,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "connectivity": "all_to_all",
+    "dirty_ancillas": 0,
+    "fault_tolerance_model": null,
+    "garbage_qubits": 0,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "input_qubits": 5,
+    "logical_qubits": 5,
+    "measurements": 0,
+    "noise_model": null,
+    "output_qubits": 5,
+    "physical_qubits": null,
+    "zero_initialized_ancillas": 0
+  },
+  "provenance": {
+    "evidence_locator": "NIST SP 800-232 Tables 5--6 and equation (7); Guo et al. Figure 3(c); repository exhaustive derivation receipt",
+    "evidence_status": "repository-derived-verified",
+    "files": [
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_guo_et_al_width5_16gate_nct.json",
+        "sha256": "fd9ec4c5a12e73b277e8f5448b39e1000aa57bcbe474a9fb714d1afb196648e5"
+      },
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_guo_et_al_width5_16gate_nct.qasm",
+        "sha256": "e064ad3d65eb2599481b200245884556a93598267e1e78c216f514b8d19dcfea"
+      },
+      {
+        "path": "ir/results/quantum/ascon_sbox_round_constant_x2_specialized_16gate_nct.qasm",
+        "sha256": "2e299685da400cbf03c808ed8cc1b4e2a138c06e5e004f3d1f3631bd8ecd8df7"
+      },
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_round_constant_x2_specialized_17gate_nct.json",
+        "sha256": "c466354413d103b2ad18610fc9311aa97d3e408b907d08484aec82fdeb68b6e7"
+      }
+    ],
+    "excluded_sources": [
+      {
+        "locator": "2025_NIST_SP_800_232_Ascon.pdf",
+        "sha256": "1be9bb9a5fef3665ee8b258babe54b8e500d667fcfbbcc99710fe6077c6bad27"
+      },
+      {
+        "locator": "2026-1815_Guo_et_al_Novel_SMT_Encoding_Quantum_Circuit_Optimization.pdf",
+        "sha256": "105f77adcd7ca3d912b28139772fe258c66f465ee6ee596c2282d2e9adbc9cd5"
+      },
+      {
+        "locator": "local_derivation.json",
+        "sha256": "81adb27bc22051e904a59289d0bfb2c33174149cb91694f3d98c2d2bc4a5f7cd"
+      }
+    ]
+  },
+  "resources": {
+    "classical_control_operations": 0,
+    "clean_ancillas_returned_to_zero": 0,
+    "cnot_count": 6,
+    "cnot_depth": null,
+    "dirty_ancillas": 0,
+    "garbage_qubits": 0,
+    "logical_qubits": 5,
+    "measurement_rounds": 0,
+    "physical_qubits": null,
+    "source_weighted_depth_gate_costs": {
+      "CNOT": 1,
+      "Toffoli": 7,
+      "X": 1
+    },
+    "source_weighted_full_depth": 53,
+    "t_count": null,
+    "t_depth": null,
+    "toffoli_count": 7,
+    "toffoli_depth": 7,
+    "topology_overhead": null,
+    "total_gate_count": 16,
+    "total_logical_depth": 11,
+    "x_count": 3,
+    "zero_initialized_ancillas": 0
+  },
+  "schema": "quantum-nct-specialized-ir/v1",
+  "target": "ascon_sbox_round_constant_x2_specialized_width5_nct"
+}

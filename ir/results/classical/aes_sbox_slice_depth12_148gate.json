@@ -235,7 +235,9 @@
       "task": 63,
       "solver": "CaDiCaL 3.0.0",
       "solver_sha256": "3fb02c91b0598a5dd0015df1314d7bd12eb23f93c8c968fecdcebee9fc4e7441",
+      "raw_witness": "[excluded-research-artifact]",
       "raw_witness_sha256": "205c0272ce2fdf758dcdca308181b2f59e5cfb61fce8755bf18189e61b1273da",
+      "complete_stream": "[excluded-research-artifact]",
       "complete_stream_sha256": "ffbd0b0cdb576e81509c5fbcaa3bb3ce9418785071c61e4c97092047489a6282"
     }
   }

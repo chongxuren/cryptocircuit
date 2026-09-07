@@ -902,6 +902,124 @@ def lookup_bit_anf(
     return frozenset(monomials)
 
 
+def verify_aes_selector_mixcolumns(
+    record: dict[str, Any], program: list[tuple[str, str, list[str]]]
+) -> None:
+    """Verify a selector-controlled AES MixColumns/InvMixColumns circuit by ANF."""
+
+    inputs = record["interface"]["inputs"]
+    outputs = record["interface"]["outputs"]
+    target = record["target"]
+    selector = target.get("selector_input")
+    data_inputs = target.get("data_inputs")
+    if len(inputs) != 33 or len(outputs) != 32:
+        raise VerificationError(
+            "AES selector MixColumns needs one selector, 32 data inputs, and 32 outputs"
+        )
+    if selector not in inputs:
+        raise VerificationError("AES selector MixColumns selector is not an input")
+    if (
+        not isinstance(data_inputs, list)
+        or len(data_inputs) != 32
+        or len(set(data_inputs)) != 32
+        or set(data_inputs) != set(inputs) - {selector}
+    ):
+        raise VerificationError(
+            "AES selector MixColumns data_inputs must contain the other inputs exactly once"
+        )
+    if (
+        target.get("selector_zero") != "MixColumns"
+        or target.get("selector_one") != "InvMixColumns"
+        or target.get("bit_order") != "lsb0 within each byte"
+        or target.get("degree") != 8
+        or int(str(target.get("modulus")), 0) != 0x11B
+    ):
+        raise VerificationError(
+            "AES selector MixColumns requires d=0 forward, d=1 inverse, lsb0, and GF(2^8)"
+        )
+    forward_coefficients = [
+        [2, 3, 1, 1],
+        [1, 2, 3, 1],
+        [1, 1, 2, 3],
+        [3, 1, 1, 2],
+    ]
+    inverse_coefficients = [
+        [14, 11, 13, 9],
+        [9, 14, 11, 13],
+        [13, 9, 14, 11],
+        [11, 13, 9, 14],
+    ]
+    if target.get("forward_coefficients") != forward_coefficients:
+        raise VerificationError("AES selector MixColumns forward coefficients mismatch")
+    if target.get("inverse_coefficients") != inverse_coefficients:
+        raise VerificationError("AES selector MixColumns inverse coefficients mismatch")
+
+    values: dict[str, frozenset[int]] = {
+        "0": frozenset(),
+        "1": frozenset({0}),
+    }
+    for index, name in enumerate(inputs):
+        values[name] = frozenset({1 << index})
+    constant = frozenset({0})
+    for out, op, args in program:
+        try:
+            arguments = [values[arg] for arg in args]
+        except KeyError as error:
+            raise VerificationError(f"{out} uses undefined signal {error.args[0]}") from error
+        if op == "alias":
+            result = arguments[0]
+        elif op == "xor":
+            result = anf_xor(*arguments)
+        elif op == "xnor":
+            result = anf_xor(*arguments, constant)
+        elif op == "and":
+            result = anf_and(arguments[0], arguments[1])
+        else:
+            raise VerificationError(
+                "AES selector MixColumns verifier supports only alias, XOR2, XNOR2, "
+                f"and AND2, not {op!r}"
+            )
+        values[out] = result
+
+    common = {
+        "kind": "gf2m_matrix",
+        "degree": 8,
+        "modulus": "0x11b",
+        "word_bit_order": "lsb0",
+    }
+    forward_rows, _, _ = build_field_matrix(
+        {**common, "coefficients": forward_coefficients}
+    )
+    inverse_rows, _, _ = build_field_matrix(
+        {**common, "coefficients": inverse_coefficients}
+    )
+    positions = {name: index for index, name in enumerate(inputs)}
+    selector_monomial = 1 << positions[selector]
+    expected: list[frozenset[int]] = []
+    for forward_row, inverse_row in zip(forward_rows, inverse_rows):
+        terms: set[int] = set()
+        for data_index, name in enumerate(data_inputs):
+            variable = 1 << positions[name]
+            if (forward_row >> data_index) & 1:
+                terms.add(variable)
+            if ((forward_row ^ inverse_row) >> data_index) & 1:
+                terms.add(selector_monomial | variable)
+        expected.append(frozenset(terms))
+    actual = []
+    for output in outputs:
+        if output not in values:
+            raise VerificationError(f"missing output signal {output}")
+        actual.append(values[output])
+    if actual != expected:
+        mismatch = next(index for index in range(32) if actual[index] != expected[index])
+        extra = len(actual[mismatch] - expected[mismatch])
+        missing = len(expected[mismatch] - actual[mismatch])
+        raise VerificationError(
+            f"AES selector MixColumns ANF mismatch at output {outputs[mismatch]}: "
+            f"extra_monomials={extra}, missing_monomials={missing}"
+        )
+
+
 def verify_ascon_sbox_diffusion(
     record: dict[str, Any], program: list[tuple[str, str, list[str]]]
 ) -> None:
@@ -1439,7 +1557,7 @@ def metrics(
             continue
         if op != "not_free":
             counts[op] += 1
-            if op in {"xor", "xnor"}:
+            if op in {"xor", "xnor", "and"}:
                 counts[f"{op}{len(args)}"] += 1
         depth[out] = 1 + max(arg_depths)
         nonlinear_depth[out] = max(arg_nonlinear_depths) + (1 if op in NONLINEAR_OPS else 0)
@@ -1626,6 +1744,12 @@ def verify_record(path: Path) -> dict[str, Any]:
         "lookup_table",
     }:
         verify_lookup(record, program)
+        target_rows = None
+        prime_field_matrix = None
+        prime_field_modulus = None
+        block_size = blocks = None
+    elif kind == "aes_selector_mixcolumns":
+        verify_aes_selector_mixcolumns(record, program)
         target_rows = None
         prime_field_matrix = None
         prime_field_modulus = None

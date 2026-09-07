@@ -186,30 +186,29 @@
     "terminal_permutation": "identity"
   },
   "comparison": {
-    "cnot_depth_reduction": 2,
-    "cnot_reduction": 15,
-    "conditional_forward_table4_cnot_count": 204,
-    "conditional_full_circuit_warning": "The 204 and 680 figures are arithmetic splice projections only. The defective full predecessor and unavailable official code prevent full-circuit equivalence and F-depth certification.",
-    "conditional_sbox_plus_adjoint_table5_cnot_count": 680,
-    "fixed_multiset_total_depth_lower_bound": "wire s2 is incident to ten CNOTs and one X gate",
-    "logical_depth_reduction": 1,
-    "pareto_tradeoff_against_53cnot_depth11": "one additional X gate buys one fewer CNOT layer; full depth remains 11",
-    "predecessor": "aes_sbox_jiang_output_suffix_direct_68cnot_depth12",
-    "total_gate_reduction": 15,
+    "cnot_depth_reduction": 0,
+    "cnot_reduction": 1,
+    "conditional_forward_table4_cnot_count": 203,
+    "conditional_forward_table4_one_qubit_clifford_count": 3,
+    "conditional_full_circuit_warning": "The 203/3 and 678/274 figures are arithmetic splice projections only. The defective full predecessor and unavailable official code prevent full-circuit equivalence and F-depth certification.",
+    "conditional_sbox_plus_adjoint_table5_cnot_count": 678,
+    "conditional_sbox_plus_adjoint_table5_one_qubit_clifford_count": 274,
+    "fixed_multiset_total_depth_lower_bound": "wires s2 and s6 are each incident to ten CNOTs and one X gate",
+    "logical_depth_reduction": 0,
+    "predecessor": "aes_sbox_output_suffix_repository_53cnot_depth11",
+    "source_direct_cnot_depth_reduction": 1,
+    "source_direct_cnot_reduction": 16,
+    "source_direct_x_reduction": 1,
+    "total_gate_reduction": 1,
     "x_reduction": 0
   },
-  "id": "aes_sbox_output_suffix_repository_53cnot_cnotdepth10_fdepth11",
+  "id": "aes_sbox_output_suffix_repository_52cnot_depth11",
   "layers": [
     [
       {
         "control": 18,
         "gate": "CNOT",
-        "target": 19
-      },
-      {
-        "control": 21,
-        "gate": "CNOT",
-        "target": 22
+        "target": 21
       },
       {
         "control": 20,
@@ -217,58 +216,58 @@
         "target": 23
       },
       {
-        "control": 24,
+        "control": 22,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 2,
         "gate": "CNOT",
         "target": 25
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 24
       }
     ],
     [
       {
-        "control": 1,
-        "gate": "CNOT",
-        "target": 21
-      },
-      {
-        "control": 15,
-        "gate": "CNOT",
-        "target": 24
-      },
-      {
-        "control": 10,
+        "control": 23,
         "gate": "CNOT",
         "target": 18
       },
       {
-        "control": 12,
+        "control": 4,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 15,
         "gate": "CNOT",
         "target": 20
       },
       {
-        "control": 3,
+        "control": 16,
         "gate": "CNOT",
-        "target": 23
+        "target": 22
       }
     ],
     [
       {
         "control": 7,
         "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 5,
-        "gate": "CNOT",
         "target": 24
       },
       {
-        "control": 1,
+        "control": 9,
         "gate": "CNOT",
-        "target": 19
-      },
-      {
-        "control": 10,
-        "gate": "CNOT",
-        "target": 21
+        "target": 18
       },
       {
         "control": 14,
@@ -276,24 +275,190 @@
         "target": 20
       },
       {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
         "control": 16,
+        "gate": "CNOT",
+        "target": 23
+      }
+    ],
+    [
+      {
+        "control": 24,
+        "gate": "CNOT",
+        "target": 25
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 9,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 10,
         "gate": "CNOT",
         "target": 23
       },
       {
-        "control": 3,
+        "control": 12,
         "gate": "CNOT",
-        "target": 25
+        "target": 20
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 18
       }
     ],
     [
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 8,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 10,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 16,
+        "gate": "CNOT",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 22
+      },
       {
         "control": 2,
         "gate": "CNOT",
         "target": 20
       },
       {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
         "control": 7,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 15,
+        "gate": "CNOT",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 22,
+        "gate": "CNOT",
+        "target": 19
+      },
+      {
+        "control": 23,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 12,
+        "gate": "CNOT",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 20,
+        "gate": "CNOT",
+        "target": 23
+      },
+      {
+        "control": 18,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 0,
+        "gate": "CNOT",
+        "target": 25
+      },
+      {
+        "control": 2,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "gate": "X",
+        "target": 24
+      }
+    ],
+    [
+      {
+        "control": 5,
+        "gate": "CNOT",
+        "target": 24
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 20
+      },
+      {
+        "control": 7,
+        "gate": "CNOT",
+        "target": 18
+      }
+    ],
+    [
+      {
+        "control": 1,
+        "gate": "CNOT",
+        "target": 21
+      },
+      {
+        "control": 3,
+        "gate": "CNOT",
+        "target": 25
+      },
+      {
+        "control": 4,
+        "gate": "CNOT",
+        "target": 22
+      },
+      {
+        "control": 6,
+        "gate": "CNOT",
+        "target": 18
+      },
+      {
+        "control": 11,
         "gate": "CNOT",
         "target": 23
       },
@@ -303,185 +468,16 @@
         "target": 24
       },
       {
-        "control": 9,
+        "control": 17,
         "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 16,
-        "gate": "CNOT",
-        "target": 21
+        "target": 20
       }
     ],
     [
-      {
-        "control": 12,
-        "gate": "CNOT",
-        "target": 24
-      },
-      {
-        "control": 2,
-        "gate": "CNOT",
-        "target": 22
-      },
-      {
-        "control": 8,
-        "gate": "CNOT",
-        "target": 20
-      },
-      {
-        "control": 0,
-        "gate": "CNOT",
-        "target": 25
-      },
-      {
-        "control": 16,
-        "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 10,
-        "gate": "CNOT",
-        "target": 23
-      },
-      {
-        "control": 15,
-        "gate": "CNOT",
-        "target": 21
-      }
-    ],
-    [
-      {
-        "control": 4,
-        "gate": "CNOT",
-        "target": 21
-      },
-      {
-        "control": 15,
-        "gate": "CNOT",
-        "target": 20
-      },
-      {
-        "control": 6,
-        "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 2,
-        "gate": "CNOT",
-        "target": 25
-      },
-      {
-        "control": 11,
-        "gate": "CNOT",
-        "target": 23
-      },
-      {
-        "control": 16,
-        "gate": "CNOT",
-        "target": 24
-      }
-    ],
-    [
-      {
-        "control": 9,
-        "gate": "CNOT",
-        "target": 21
-      },
-      {
-        "control": 15,
-        "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 0,
-        "gate": "CNOT",
-        "target": 20
-      },
       {
         "control": 24,
         "gate": "CNOT",
         "target": 25
-      }
-    ],
-    [
-      {
-        "control": 18,
-        "gate": "CNOT",
-        "target": 19
-      },
-      {
-        "control": 20,
-        "gate": "CNOT",
-        "target": 23
-      },
-      {
-        "control": 4,
-        "gate": "CNOT",
-        "target": 24
-      },
-      {
-        "control": 21,
-        "gate": "CNOT",
-        "target": 22
-      },
-      {
-        "gate": "X",
-        "target": 25
-      }
-    ],
-    [
-      {
-        "control": 0,
-        "gate": "CNOT",
-        "target": 19
-      },
-      {
-        "control": 6,
-        "gate": "CNOT",
-        "target": 20
-      },
-      {
-        "control": 7,
-        "gate": "CNOT",
-        "target": 24
-      },
-      {
-        "control": 4,
-        "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 3,
-        "gate": "CNOT",
-        "target": 21
-      }
-    ],
-    [
-      {
-        "control": 4,
-        "gate": "CNOT",
-        "target": 23
-      },
-      {
-        "control": 3,
-        "gate": "CNOT",
-        "target": 18
-      },
-      {
-        "control": 0,
-        "gate": "CNOT",
-        "target": 21
-      },
-      {
-        "control": 17,
-        "gate": "CNOT",
-        "target": 20
-      },
-      {
-        "control": 8,
-        "gate": "CNOT",
-        "target": 24
       },
       {
         "control": 5,
@@ -489,18 +485,17 @@
         "target": 22
       },
       {
-        "gate": "X",
-        "target": 19
-      }
-    ],
-    [
-      {
-        "gate": "X",
-        "target": 20
+        "control": 7,
+        "gate": "CNOT",
+        "target": 23
       },
       {
         "gate": "X",
-        "target": 24
+        "target": 19
+      },
+      {
+        "gate": "X",
+        "target": 20
       }
     ]
   ],
@@ -523,8 +518,8 @@
     "physical_qubits": null
   },
   "provenance": {
-    "construction_note": "Depth-oriented schedule of the same four rectangle-sharing blocks. It retains four X gates to place all CNOTs in ten layers. This is a verified suffix unitary, not a verified repair of the paper's full S-box circuit.",
-    "evidence_locator": "Supplementary Material section 2, Outputs, p.2; repository rectangle-sharing construction and exact affine replay",
+    "construction_note": "A symmetric five-CNOT accumulator skeleton exposes the output parities 0x09, 0x12, 0x24, 0x29, and 0xc0. Product injections selected over that dictionary and an exact matching-layer schedule implement the same arbitrary-accumulator suffix in 52 CNOTs and three X gates. This is a verified suffix unitary, not a verified repair of the paper's full S-box circuit.",
+    "evidence_locator": "Supplementary Material section 2, Outputs, p.2; repository five-step accumulator-parity search, exact affine replay, and matching-layer SAT schedule",
     "evidence_status": "repository-derived-verified",
     "files": [
       {
@@ -534,16 +529,30 @@
       {
         "path": "ir/baselines/quantum/aes_sbox_output_suffix_repository_53cnot_depth11.json",
         "sha256": "06914b7372ccc56881b923bca5caf69b457b28e1dbcd8e5fdd5f78f7c3e1cf3f"
+      },
+      {
+        "path": "ir/results/quantum/aes_sbox_output_suffix_repository_53cnot_cnotdepth10_fdepth11.json",
+        "sha256": "926d835575e8cf15cd802a828dcc4d0d3bfe5e5b2f3f4ba2599dc76835105ede"
       }
     ],
     "official_code_repository": "https://github.com/kyolxs/Constructing-Resource-Efficient-Quantum-Circuits-for-AES",
-    "official_code_status": "unavailable_404_on_2026-08-29"
+    "official_code_status": "unavailable_404_on_2026-08-29",
+    "excluded_sources": [
+      {
+        "locator": "2025_Jiang_et_al_Resource_Efficient_Quantum_AES.pdf",
+        "sha256": "8d72144a163bcd69967e16c8dc6f0e03448f15cd81fe9e5e1485bf086d768fea"
+      },
+      {
+        "locator": "2025_Jiang_et_al_Resource_Efficient_Quantum_AES_Supplement.pdf",
+        "sha256": "b092554f30caa759ede9bd85070850fbd1b42320f96297d0969db87f6729c39b"
+      }
+    ]
   },
   "resources": {
     "classical_control_operations": 0,
     "clean_ancillas": 0,
-    "cnot_count": 53,
-    "cnot_depth": 10,
+    "cnot_count": 52,
+    "cnot_depth": 11,
     "dirty_ancillas": 0,
     "logical_qubits": 26,
     "measurement_rounds": 0,
@@ -553,9 +562,9 @@
     "toffoli_count": 0,
     "toffoli_depth": 0,
     "topology_overhead": null,
-    "total_gate_count": 57,
+    "total_gate_count": 55,
     "total_logical_depth": 11,
-    "x_count": 4
+    "x_count": 3
   },
   "schema": "quantum-affine-circuit-ir/v1",
   "target": "aes_sbox_jiang_output_accumulation"

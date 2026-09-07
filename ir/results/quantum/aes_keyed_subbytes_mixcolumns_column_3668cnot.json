@@ -1,0 +1,1058 @@
+{
+  "boundary": {
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+    ],
+    "basis_semantics": "|a>|0^4>|k> -> |MixColumns(SubBytes(a)) xor k>|0^4>|k>",
+    "clean_workspace_final_state": "zero",
+    "clean_workspace_initial_state": "zero",
+    "clean_workspace_wires": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "operation": "isometry",
+    "round_key_bit_order_within_byte": "lsb0",
+    "round_key_input_wires": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+    ],
+    "round_key_output_wires": [
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67
+    ],
+    "round_key_preserved": true,
+    "round_key_wire_definition": "q[36+8*j+k] is coefficient x^k of arbitrary round-key byte k[j]",
+    "sbox_output_msb0_local_wires": [
+      4,
+      2,
+      0,
+      1,
+      3,
+      5,
+      6,
+      7
+    ],
+    "shiftrows_boundary": "declared free input-byte placement; s0,s1,s2,s3 are already one post-ShiftRows column",
+    "state_input_bit_order_within_byte": "msb0",
+    "state_input_byte_order": [
+      "s0",
+      "s1",
+      "s2",
+      "s3"
+    ],
+    "state_input_physical_wires": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "state_input_wire_definition": "q[8*j+i] is AES input coordinate x_i of byte s[j]",
+    "state_output_bit_order_within_byte": "lsb0",
+    "state_output_byte_order": [
+      "t0",
+      "t1",
+      "t2",
+      "t3"
+    ],
+    "state_output_logical_lsb0_physical_wires": [
+      7,
+      6,
+      5,
+      3,
+      1,
+      0,
+      2,
+      4,
+      15,
+      14,
+      13,
+      11,
+      9,
+      8,
+      10,
+      12,
+      23,
+      22,
+      21,
+      19,
+      17,
+      16,
+      18,
+      20,
+      31,
+      30,
+      29,
+      27,
+      25,
+      24,
+      26,
+      28
+    ],
+    "terminal_permutation": "explicit_nonidentity_state_coordinate_mapping"
+  },
+  "comparison": {
+    "cnot_reduction": 1,
+    "logical_depth_change": 0,
+    "predecessor": "aes_keyed_subbytes_mixcolumns_column_3669cnot",
+    "predecessor_record_path": "ir/baselines/quantum/aes_keyed_subbytes_mixcolumns_column_3669cnot.json",
+    "predecessor_resource_vector": {
+      "classical_control_operations": 0,
+      "clean_ancillas": 4,
+      "cnot_count": 3669,
+      "cnot_depth": null,
+      "dirty_ancillas": 0,
+      "logical_qubits": 68,
+      "measurement_rounds": 0,
+      "physical_qubits": null,
+      "t_count": null,
+      "t_depth": null,
+      "toffoli_count": 3316,
+      "toffoli_depth": 789,
+      "topology_overhead": null,
+      "total_gate_count": 7917,
+      "total_logical_depth": 1592,
+      "x_count": 932,
+      "zero_initialized_output_qubits": 0
+    },
+    "total_gate_reduction": 1
+  },
+  "construction": {
+    "add_round_key_cnot_pairs": [
+      [
+        36,
+        7
+      ],
+      [
+        37,
+        6
+      ],
+      [
+        38,
+        5
+      ],
+      [
+        39,
+        3
+      ],
+      [
+        40,
+        1
+      ],
+      [
+        41,
+        0
+      ],
+      [
+        42,
+        2
+      ],
+      [
+        43,
+        4
+      ],
+      [
+        44,
+        15
+      ],
+      [
+        45,
+        14
+      ],
+      [
+        46,
+        13
+      ],
+      [
+        47,
+        11
+      ],
+      [
+        48,
+        9
+      ],
+      [
+        49,
+        8
+      ],
+      [
+        50,
+        10
+      ],
+      [
+        51,
+        12
+      ],
+      [
+        52,
+        23
+      ],
+      [
+        53,
+        22
+      ],
+      [
+        54,
+        21
+      ],
+      [
+        55,
+        19
+      ],
+      [
+        56,
+        17
+      ],
+      [
+        57,
+        16
+      ],
+      [
+        58,
+        18
+      ],
+      [
+        59,
+        20
+      ],
+      [
+        60,
+        31
+      ],
+      [
+        61,
+        30
+      ],
+      [
+        62,
+        29
+      ],
+      [
+        63,
+        27
+      ],
+      [
+        64,
+        25
+      ],
+      [
+        65,
+        24
+      ],
+      [
+        66,
+        26
+      ],
+      [
+        67,
+        28
+      ]
+    ],
+    "mixcolumns_record_path": "ir/baselines/quantum/aes_mixcolumns_repository_105cnot_depth10.json",
+    "qasm_path": "ir/results/quantum/aes_keyed_subbytes_mixcolumns_column_3668cnot.qasm",
+    "qasm_sha256": "514b7311a91ee5655231079c2bd644d798774f2ed2112f1cb38a195dc2541fe7",
+    "role": "candidate",
+    "sbox_instances": 4,
+    "sbox_qasm_path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
+    "sbox_record_path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.json",
+    "tail_cnot_count": 116,
+    "tail_cnot_depth": 13,
+    "tail_layers": [
+      [
+        [
+          4,
+          3
+        ],
+        [
+          12,
+          11
+        ],
+        [
+          20,
+          19
+        ],
+        [
+          28,
+          27
+        ]
+      ],
+      [
+        [
+          0,
+          4
+        ],
+        [
+          8,
+          12
+        ],
+        [
+          16,
+          20
+        ],
+        [
+          24,
+          28
+        ]
+      ],
+      [
+        [
+          1,
+          17
+        ],
+        [
+          4,
+          20
+        ],
+        [
+          9,
+          25
+        ],
+        [
+          12,
+          28
+        ]
+      ],
+      [
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          4,
+          9
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          7,
+          15
+        ],
+        [
+          12,
+          1
+        ],
+        [
+          16,
+          24
+        ],
+        [
+          17,
+          25
+        ],
+        [
+          18,
+          26
+        ],
+        [
+          19,
+          27
+        ],
+        [
+          20,
+          28
+        ],
+        [
+          21,
+          29
+        ],
+        [
+          22,
+          30
+        ],
+        [
+          23,
+          31
+        ]
+      ],
+      [
+        [
+          0,
+          16
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          3,
+          19
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          7,
+          23
+        ],
+        [
+          8,
+          24
+        ],
+        [
+          10,
+          26
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          14,
+          30
+        ],
+        [
+          15,
+          31
+        ],
+        [
+          20,
+          17
+        ],
+        [
+          28,
+          25
+        ]
+      ],
+      [
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          0
+        ],
+        [
+          13,
+          29
+        ],
+        [
+          14,
+          5
+        ],
+        [
+          15,
+          6
+        ],
+        [
+          27,
+          3
+        ],
+        [
+          28,
+          4
+        ]
+      ],
+      [
+        [
+          13,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          12,
+          7
+        ],
+        [
+          23,
+          14
+        ],
+        [
+          19,
+          9
+        ],
+        [
+          17,
+          8
+        ],
+        [
+          20,
+          15
+        ],
+        [
+          29,
+          5
+        ],
+        [
+          26,
+          2
+        ]
+      ],
+      [
+        [
+          11,
+          1
+        ],
+        [
+          12,
+          6
+        ],
+        [
+          22,
+          13
+        ],
+        [
+          16,
+          10
+        ],
+        [
+          20,
+          9
+        ],
+        [
+          27,
+          17
+        ],
+        [
+          28,
+          23
+        ]
+      ],
+      [
+        [
+          12,
+          3
+        ],
+        [
+          21,
+          11
+        ],
+        [
+          20,
+          14
+        ],
+        [
+          31,
+          7
+        ],
+        [
+          30,
+          6
+        ],
+        [
+          28,
+          22
+        ]
+      ],
+      [
+        [
+          18,
+          12
+        ],
+        [
+          20,
+          11
+        ],
+        [
+          29,
+          19
+        ],
+        [
+          25,
+          16
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          28,
+          17
+        ]
+      ],
+      [
+        [
+          31,
+          22
+        ],
+        [
+          30,
+          21
+        ],
+        [
+          25,
+          1
+        ],
+        [
+          24,
+          18
+        ],
+        [
+          26,
+          20
+        ],
+        [
+          28,
+          19
+        ]
+      ],
+      [
+        [
+          7,
+          15
+        ],
+        [
+          6,
+          14
+        ],
+        [
+          5,
+          13
+        ],
+        [
+          3,
+          11
+        ],
+        [
+          1,
+          9
+        ],
+        [
+          0,
+          8
+        ],
+        [
+          2,
+          10
+        ],
+        [
+          4,
+          12
+        ],
+        [
+          23,
+          31
+        ],
+        [
+          22,
+          30
+        ],
+        [
+          21,
+          29
+        ],
+        [
+          19,
+          27
+        ],
+        [
+          17,
+          25
+        ],
+        [
+          16,
+          24
+        ],
+        [
+          18,
+          26
+        ],
+        [
+          20,
+          28
+        ]
+      ],
+      [
+        [
+          7,
+          23
+        ],
+        [
+          6,
+          22
+        ],
+        [
+          5,
+          21
+        ],
+        [
+          3,
+          19
+        ],
+        [
+          1,
+          17
+        ],
+        [
+          0,
+          16
+        ],
+        [
+          2,
+          18
+        ],
+        [
+          4,
+          20
+        ],
+        [
+          15,
+          31
+        ],
+        [
+          14,
+          30
+        ],
+        [
+          13,
+          29
+        ],
+        [
+          11,
+          27
+        ],
+        [
+          9,
+          25
+        ],
+        [
+          8,
+          24
+        ],
+        [
+          10,
+          26
+        ],
+        [
+          12,
+          28
+        ]
+      ]
+    ],
+    "tail_matrix_rows": [
+      "0x01011213",
+      "0x13131a09",
+      "0x04040501",
+      "0x18182931",
+      "0x11111504",
+      "0x20206040",
+      "0x4040d191",
+      "0x80809111",
+      "0x01121301",
+      "0x131a0913",
+      "0x04050104",
+      "0x18293118",
+      "0x11150411",
+      "0x20604020",
+      "0x40d19140",
+      "0x80911180",
+      "0x12130101",
+      "0x1a091313",
+      "0x05010404",
+      "0x29311818",
+      "0x15041111",
+      "0x60402020",
+      "0xd1914040",
+      "0x91118080",
+      "0x13010112",
+      "0x0913131a",
+      "0x01040405",
+      "0x31181829",
+      "0x04111115",
+      "0x40202060",
+      "0x914040d1",
+      "0x11808091"
+    ],
+    "tail_output_constant_physical_wires": [
+      0,
+      8,
+      16,
+      24
+    ]
+  },
+  "id": "aes_keyed_subbytes_mixcolumns_column_3668cnot",
+  "model": {
+    "classical_feed_forward": false,
+    "clean_ancillas": 4,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "connectivity": "all_to_all",
+    "dirty_ancillas": 0,
+    "fault_tolerance_model": null,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "logical_qubits": 68,
+    "measurements": 0,
+    "noise_model": null,
+    "output_qubits": 64,
+    "physical_qubits": null,
+    "round_key_input_qubits": 32,
+    "state_input_qubits": 32
+  },
+  "objective_bounds": {
+    "clean_ancillas_at_most": 4,
+    "cnot_count_at_most": 3668,
+    "dirty_ancillas": 0,
+    "logical_qubits_at_most": 68,
+    "measurements": 0,
+    "toffoli_count_at_most": 3316,
+    "toffoli_depth_at_most": 789,
+    "total_logical_depth_at_most": 1592,
+    "x_count_at_most": 932
+  },
+  "provenance": {
+    "evidence_locator": "FIPS 197 Sections 5.1.1--5.1.4; four verified width-nine S-box instances; verified 105-CNOT MixColumns; explicit variable AddRoundKey",
+    "evidence_status": "repository-derived-verified",
+    "files": [
+      {
+        "path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.json",
+        "sha256": "314f117b40e293e012729d1a827eb83f8f154d40bbb7aa24c63c7f081871b6c8"
+      },
+      {
+        "path": "ir/results/quantum/aes_sbox_repository_width9_829toffoli.qasm",
+        "sha256": "b373bc1f2fd683bcabf8603cf182fd13fdb89791a549af171b997bf1a20f171f"
+      },
+      {
+        "path": "ir/baselines/quantum/aes_mixcolumns_repository_105cnot_depth10.json",
+        "sha256": "c0f8ac3f03bceae8e1b869b897dd342c1d35b7a19f877bb29ebec7fe0f2f9565"
+      }
+    ],
+    "excluded_sources": [
+      {
+        "locator": "2023_NIST_FIPS_197_AES.pdf",
+        "sha256": "62c86eb567f13edb8f71826e985da870b04ef6381634f303cdb16e84d47becd1"
+      },
+      {
+        "locator": "target.py",
+        "sha256": "2762f82269960d6e3b69775912c1aed4b3088ecc53d50c0360ff70c2a38f26d3"
+      },
+      {
+        "locator": "build_records.py",
+        "sha256": "109313b29c247a06c7a125b9fc250254b35f22d300da4f4ac1b2a99e91d80ae6"
+      },
+      {
+        "locator": "baseline_tail_layers.txt",
+        "sha256": "d0b98b2daa4ea8776a5d812c946c60bd21f0d20859db67916d2713fbd35eae08"
+      },
+      {
+        "locator": "candidate_tail_layers.json",
+        "sha256": "4c80191eef2b52a53fa8863c43c225d105f5ddf35678f0a39074365baee9f93a"
+      },
+      {
+        "locator": "job-14910728-results.jsonl",
+        "sha256": "709fd5bb059e93a8fa366ad9e6a7cf7a28bc864e2b666895b09334be87680cbf"
+      },
+      {
+        "locator": "job-14910728-validation.json",
+        "sha256": "97f3498559a73f666e2ec1d3b7b0d91fbcad8610f4db33835d096032236ce011"
+      },
+      {
+        "locator": "job-14910728-files.sha256",
+        "sha256": "26a15dbe7f3cbc628248c57224a58ad867f319090d1e67c906398592a57114ea"
+      },
+      {
+        "locator": "job-14910728-slurm.out",
+        "sha256": "93e5441730ded5f3c4d42fcd4998b48a931c4a343b40c1a266d254bff47ed0ff"
+      }
+    ]
+  },
+  "resources": {
+    "classical_control_operations": 0,
+    "clean_ancillas": 4,
+    "cnot_count": 3668,
+    "cnot_depth": null,
+    "dirty_ancillas": 0,
+    "logical_qubits": 68,
+    "measurement_rounds": 0,
+    "physical_qubits": null,
+    "t_count": null,
+    "t_depth": null,
+    "toffoli_count": 3316,
+    "toffoli_depth": 789,
+    "topology_overhead": null,
+    "total_gate_count": 7916,
+    "total_logical_depth": 1592,
+    "x_count": 932,
+    "zero_initialized_output_qubits": 0
+  },
+  "schema": "quantum-nct-keyed-aes-column-ir/v1",
+  "target": "aes_keyed_subbytes_mixcolumns_column"
+}

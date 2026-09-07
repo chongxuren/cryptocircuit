@@ -1,0 +1,138 @@
+{
+  "schema": "quantum-nct-diagram-source-ir/v1",
+  "id": "ascon_sbox_guo_et_al_width5_16gate_nct",
+  "target": "ascon_sbox_forward_width5_total_gate_nct",
+  "provenance": {
+    "evidence_status": "source-derived-verified",
+    "evidence_locator": "Guo et al., ePrint 2026/1815, Table 10 on physical PDF p.20 and complete circuit diagram Figure 3(c) on physical PDF p.26",
+    "files": [
+      {
+        "path": "ir/baselines/quantum/ascon_sbox_guo_et_al_width5_16gate_nct.qasm",
+        "sha256": "e064ad3d65eb2599481b200245884556a93598267e1e78c216f514b8d19dcfea"
+      }
+    ],
+    "excluded_sources": [
+      {
+        "locator": "2026-1815_Guo_et_al_Novel_SMT_Encoding_Quantum_Circuit_Optimization.pdf",
+        "sha256": "105f77adcd7ca3d912b28139772fe258c66f465ee6ee596c2282d2e9adbc9cd5"
+      }
+    ]
+  },
+  "boundary": {
+    "operation": "unitary",
+    "basis_semantics": "forward Ascon S-box on computational-basis states",
+    "input_coordinate_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "input_coordinate_order": [
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "x4"
+    ],
+    "input_bit_order": "msb0",
+    "output_coordinate_wires": [
+      4,
+      0,
+      3,
+      2,
+      1
+    ],
+    "output_coordinate_order": [
+      "y0",
+      "y1",
+      "y2",
+      "y3",
+      "y4"
+    ],
+    "output_bit_order": "msb0",
+    "preserved_input_wires": [],
+    "zero_initialized_ancilla_wires": [],
+    "zero_initialized_ancilla_initial_state": "not_applicable",
+    "cleaned_ancilla_wires": [],
+    "garbage_wires": [],
+    "garbage_final_functions": {},
+    "ancilla_cleanup_policy": "not_applicable",
+    "terminal_permutation": "explicit_nonidentity",
+    "all_circuit_wires": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "model": {
+    "logical_qubits": 5,
+    "physical_qubits": null,
+    "input_qubits": 5,
+    "output_qubits": 5,
+    "zero_initialized_ancillas": 0,
+    "clean_ancillas_returned_to_zero": 0,
+    "dirty_ancillas": 0,
+    "garbage_qubits": 0,
+    "gate_set": [
+      "X",
+      "CNOT",
+      "Toffoli"
+    ],
+    "connectivity": "all_to_all",
+    "measurements": 0,
+    "classical_feed_forward": false,
+    "compilation_level": "logical_nct_pre_clifford_t_and_pre_device_mapping",
+    "noise_model": null,
+    "fault_tolerance_model": null
+  },
+  "source_circuit": {
+    "qasm_path": "ir/baselines/quantum/ascon_sbox_guo_et_al_width5_16gate_nct.qasm",
+    "transcription": {
+      "source_figure": "Figure 3(c), physical PDF p.26",
+      "method": "manual_vector_diagram_to_ordered_openqasm_2",
+      "same_column_disjoint_gates": "serialized_in_arbitrary_disjoint_order"
+    },
+    "source_reported_resources": {
+      "x_count": 3,
+      "cnot_count": 6,
+      "toffoli_count": 7,
+      "total_gate_count": 16,
+      "weighted_full_depth": 53,
+      "weighted_depth_gate_costs": {
+        "X": 1,
+        "CNOT": 1,
+        "Toffoli": 7
+      },
+      "weighted_depth_semantics": "ordered_asap_dependency_depth"
+    }
+  },
+  "resources": {
+    "logical_qubits": 5,
+    "physical_qubits": null,
+    "zero_initialized_ancillas": 0,
+    "clean_ancillas_returned_to_zero": 0,
+    "dirty_ancillas": 0,
+    "garbage_qubits": 0,
+    "total_gate_count": 16,
+    "x_count": 3,
+    "cnot_count": 6,
+    "toffoli_count": 7,
+    "t_count": null,
+    "total_logical_depth": 11,
+    "cnot_depth": null,
+    "toffoli_depth": 7,
+    "t_depth": null,
+    "source_weighted_full_depth": 53,
+    "source_weighted_depth_gate_costs": {
+      "X": 1,
+      "CNOT": 1,
+      "Toffoli": 7
+    },
+    "measurement_rounds": 0,
+    "classical_control_operations": 0,
+    "topology_overhead": null
+  }
+}
